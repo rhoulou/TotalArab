@@ -16,5 +16,5 @@ cloudstream {
     status = 1 // verified working against akwam.it
     tvTypes = listOf("TvSeries", "Movie", "Anime", "AsianDrama")
 
-    iconUrl = "https://raw.githubusercontent.com/rhoulou/TotalArab/main/akwam.png"
+    iconUrl = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQq1OMQIgGXbMMPF8_szyAFJAjGV50VjCpZrR-Bgmlwvg&s"
 }
