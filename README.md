@@ -19,6 +19,7 @@ Or add `https://raw.githubusercontent.com/rhoulou/TotalArab/main/repo.json` as a
 | Provider | Content | Notes |
 | --- | --- | --- |
 | Akwam | Movies, series, anime, Asian drama (Arabic) | Scrapes akwam.it directly from the phone. Falls back to the ak.sv alias, which always redirects to whichever akwam domain is currently live. Direct mp4 links. |
+| WeCima | Movies, series (Arabic) | Scrapes wecima.cx directly from the phone. Falls back to wecima.watch/wecima.movie/wecima.click on domain changes. Embed servers (lulustream, doodstream, mixdrop, ...), seasons + episodes via the site's /ajax/Episode endpoint. |
 
 ## Dev
 
