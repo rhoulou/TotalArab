@@ -256,6 +256,7 @@ class AkwamProvider : MainAPI() {
                     if (epUrl.isNotBlank() && epName.isNotBlank()) {
                         val parsed = ArabicTitleParser.parse(epName)
                         allEpisodes.add(newEpisode(epUrl) {
+                            this.data = epUrl
                             name = parsed.title.ifEmpty { null }
                             this.season = parsed.season ?: seasonNumber
                             this.episode = parsed.episode

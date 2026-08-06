@@ -153,6 +153,7 @@ class WeCimaProvider : MainAPI() {
                     val epName = a.selectFirst("episodetitle")?.text()?.trim()
                     val parsed = ArabicTitleParser.parse(epName ?: "")
                     episodes.add(newEpisode(epUrl) {
+                        this.data = epUrl
                         this.name = parsed.title.ifEmpty { null }
                         this.episode = parsed.episode
                         this.season = seasonNum
