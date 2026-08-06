@@ -4,6 +4,10 @@ Arabic content providers for CloudStream 3.
 
 ## Add the repo to CloudStream
 
+Easy install page: **https://rhoulou.github.io/TotalArab/**
+
+Or add the repo directly:
+
 ```
 cloudstreamrepo://raw.githubusercontent.com/rhoulou/TotalArab/refs/heads/main/repo
 ```
