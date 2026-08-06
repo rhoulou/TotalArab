@@ -13,6 +13,7 @@ import com.lagradost.cloudstream3.utils.getQualityFromName
 import org.jsoup.nodes.Element
 import com.lagradost.cloudstream3.utils.AppUtils.toJson
 import com.lagradost.cloudstream3.utils.AppUtils.parseJson
+import com.totalarab.util.ArabicTitleParser
 import kotlin.Pair
 import org.jsoup.nodes.Document
 
@@ -164,10 +165,6 @@ class AkwamProvider : MainAPI() {
         }
     }
 
-    private fun getEpisodeNumberFromString(name: String): Int? {
-        return Regex("""\d+""").findAll(name).lastOrNull()?.value?.toIntOrNull()
-    }
-
     override suspend fun load(url: String): LoadResponse {
         val parts = url.split("#")
         val pageUrl = parts[0]
@@ -176,7 +173,8 @@ class AkwamProvider : MainAPI() {
         val defaultHeaders = mapOf("Referer" to base)
         val mainDoc = fetchDocument(pageUrl, headers = defaultHeaders)
 
-        val title = mainDoc.selectFirst("h1.entry-title")?.text()?.trim() ?: "Unknown"
+        val rawTitle = mainDoc.selectFirst("h1.entry-title")?.text()?.trim() ?: "Unknown"
+        val title = ArabicTitleParser.parse(rawTitle).title.ifBlank { rawTitle }
         val plot = mainDoc.selectFirst("h2:contains(قصة المسلسل) + div > p")?.text()?.trim()
             ?: mainDoc.selectFirst("meta[name=description]")?.attr("content")?.trim()
 
@@ -256,10 +254,11 @@ class AkwamProvider : MainAPI() {
                         episodeLink.selectFirst("h2")?.text()?.trim() ?: episodeLink.text().trim()
                     val epPoster = getPoster(episodeContainer)
                     if (epUrl.isNotBlank() && epName.isNotBlank()) {
+                        val parsed = ArabicTitleParser.parse(epName)
                         allEpisodes.add(newEpisode(epUrl) {
-                            name = epName
-                            this.season = seasonNumber
-                            this.episode = getEpisodeNumberFromString(epName)
+                            name = parsed.title.ifEmpty { null }
+                            this.season = parsed.season ?: seasonNumber
+                            this.episode = parsed.episode
                             this.posterUrl = epPoster
                         })
                     }
@@ -300,46 +299,7 @@ class AkwamProvider : MainAPI() {
     }
 
     private fun getSeasonNumber(seasonName: String): Int {
-        val map = mapOf(
-            "الاول" to 1,
-            "الأول" to 1,
-            "الثاني" to 2,
-            "الثالث" to 3,
-            "الرابع" to 4,
-            "الخامس" to 5,
-            "السادس" to 6,
-            "السابع" to 7,
-            "الثامن" to 8,
-            "التاسع" to 9,
-            "العاشر" to 10,
-            "الحادي عشر" to 11,
-            "الثاني عشر" to 12,
-            "الثالث عشر" to 13,
-            "الرابع عشر" to 14,
-            "الخامس عشر" to 15,
-            "السادس عشر" to 16,
-            "السابع عشر" to 17,
-            "الثامن عشر" to 18,
-            "التاسع عشر" to 19,
-            "العشرون" to 20,
-            "الحادي والعشرون" to 21,
-            "الثاني والعشرون" to 22,
-            "الثالث والعشرون" to 23,
-            "الرابع والعشرون" to 24,
-            "الخامس والعشرون" to 25,
-            "السادس والعشرون" to 26,
-            "السابع والعشرون" to 27,
-            "الثامن والعشرون" to 28,
-            "التاسع والعشرون" to 29,
-            "الثلاثون" to 30
-        )
-        val lower = seasonName.lowercase()
-        for ((k, v) in map) {
-            if (lower.contains(k)) return v
-        }
-        val nums = Regex("\\d+").findAll(seasonName).map { it.value.toIntOrNull() ?: 0 }.toList()
-        if (nums.isNotEmpty()) return nums.last()
-        return 999
+        return ArabicTitleParser.parse(seasonName).season ?: 999
     }
 
     override suspend fun loadLinks(

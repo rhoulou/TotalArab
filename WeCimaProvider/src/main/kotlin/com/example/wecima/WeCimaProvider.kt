@@ -3,10 +3,7 @@ package com.example.wecima
 import android.util.Base64
 import com.lagradost.cloudstream3.*
 import com.lagradost.cloudstream3.utils.ExtractorLink
-import com.lagradost.cloudstream3.utils.ExtractorLinkType
-import com.lagradost.cloudstream3.utils.getQualityFromName
-import com.lagradost.cloudstream3.utils.loadExtractor
-import com.lagradost.cloudstream3.utils.newExtractorLink
+import com.totalarab.util.ArabicTitleParser
 import org.jsoup.nodes.Document
 import org.jsoup.nodes.Element
 import java.net.URLEncoder
@@ -132,9 +129,10 @@ class WeCimaProvider : MainAPI() {
     override suspend fun load(url: String): LoadResponse {
         val doc = fetchDocument(url)
 
-        val title = doc.selectFirst("h1")?.text()?.trim()
+        val rawTitle = doc.selectFirst("h1")?.text()?.trim()
             ?.replace(Regex("""\s+بجودة\s+.*$"""), "")?.trim()
             ?: throw ErrorLoadingException("Title not found on page: $url")
+        val title = ArabicTitleParser.parse(rawTitle).title.ifBlank { rawTitle }
         val poster = doc.selectFirst("meta[property=\"og:image\"]")?.attr("content")?.ifBlank { null }
         val plot = doc.selectFirst("meta[name=\"description\"]")?.attr("content")?.ifBlank { null }
         val year = Regex("""\((\d{4})\)""").find(title)?.groupValues?.get(1)?.toIntOrNull()
@@ -153,10 +151,10 @@ class WeCimaProvider : MainAPI() {
                 doc.select(".EpisodesList a[href], a.hoverable[href]").forEach { a ->
                     val epUrl = a.attr("abs:href").takeIf { it.isNotEmpty() } ?: return@forEach
                     val epName = a.selectFirst("episodetitle")?.text()?.trim()
-                    val epNum = epName?.let { Regex("""\d+""").find(it)?.value?.toIntOrNull() }
+                    val parsed = ArabicTitleParser.parse(epName ?: "")
                     episodes.add(newEpisode(epUrl) {
-                        this.name = epName
-                        this.episode = epNum
+                        this.name = parsed.title.ifEmpty { null }
+                        this.episode = parsed.episode
                         this.season = seasonNum
                     })
                 }
@@ -226,21 +224,67 @@ class WeCimaProvider : MainAPI() {
             return false
         }
 
+        fun keyOf(url: String): String {
+            val host = runCatching { url.substringAfter("//").substringBefore("/").lowercase() }
+                .getOrDefault(url)
+            val id = url.trimEnd('/').substringAfterLast('/')
+            return "$host/$id"
+        }
+
+        val urls = LinkedHashMap<String, String>()
+        val qualities = HashMap<String, Int?>()
+
+        fun addTarget(url: String, quality: Int?) {
+            if (url.isBlank()) return
+            val key = keyOf(url)
+            val existing = urls[key]
+            if (existing == null) {
+                urls[key] = url
+                qualities[key] = quality
+            } else if (qualities[key] == null && quality != null) {
+                qualities[key] = quality
+            }
+        }
+
         val servers =
             doc.select(".WatchServersList li btn[data-url], .WatchServers > ul > li > btn[data-url]")
-        if (servers.isEmpty()) return false
-
         for (btn in servers) {
             val encoded = btn.attr("data-url").replace("+", "")
             if (encoded.isBlank()) continue
             try {
                 val embedUrl = Base64.decode("aHR0c$encoded", Base64.DEFAULT)
                     .toString(Charsets.UTF_8)
-                loadExtractor(embedUrl, watchUrl, subtitleCallback, callback)
+                addTarget(embedUrl, null)
             } catch (_: Exception) {
             }
         }
 
-        return true
+        doc.select("li.download-item.openLinkDown[data-href]").forEach { item ->
+            val encoded = item.attr("data-href").replace("+", "")
+            if (encoded.isBlank()) return@forEach
+            val quality = WeCimaResolver.parseQuality(
+                item.selectFirst("a.download-card span.resolution")?.text()
+            )
+            try {
+                val url = Base64.decode("aHR0c$encoded", Base64.DEFAULT)
+                    .toString(Charsets.UTF_8)
+                addTarget(url, quality)
+            } catch (_: Exception) {
+            }
+        }
+
+        if (urls.isEmpty()) return false
+
+        var emitted = 0
+        for ((key, url) in urls) {
+            try {
+                if (WeCimaResolver.resolve(url, watchUrl, qualities[key], subtitleCallback, callback)) {
+                    emitted++
+                }
+            } catch (_: Exception) {
+            }
+        }
+
+        return emitted > 0
     }
 }
