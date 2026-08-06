@@ -1,0 +1,25 @@
+[
+    {
+        "name": "Akwam",
+        "internalName": "AkwamProvider",
+        "url": "https://raw.githubusercontent.com/rhoulou/TotalArab/main/AkwamProvider_1.cs3",
+        "status": 1,
+        "version": 1,
+        "apiVersion": 1,
+        "authors": [
+            "rhoulou"
+        ],
+        "description": "Movies & series from akwam (Arabic). Scrapes akwam.it directly from the phone with ak.sv fallback for domain changes.",
+        "language": "ar",
+        "tvTypes": [
+            "TvSeries",
+            "Movie",
+            "Anime",
+            "AsianDrama"
+        ],
+        "iconUrl": "https://raw.githubusercontent.com/rhoulou/TotalArab/main/akwam.png",
+        "repositoryUrl": "https://github.com/rhoulou/TotalArab",
+        "fileSize": 0,
+        "fileHash": ""
+    }
+]

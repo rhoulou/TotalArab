@@ -1,0 +1,8 @@
+{
+    "name": "TotalArab",
+    "description": "Arabic content providers for CloudStream 3 (Akwam and more)",
+    "manifestVersion": 1,
+    "pluginLists": [
+        "https://raw.githubusercontent.com/rhoulou/TotalArab/main/plugins.json"
+    ]
+}
