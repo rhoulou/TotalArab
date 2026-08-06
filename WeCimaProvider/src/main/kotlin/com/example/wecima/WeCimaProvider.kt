@@ -75,14 +75,16 @@ class WeCimaProvider : MainAPI() {
     private fun Element.toSearchResponse(): SearchResponse? {
         val link = selectFirst(".Thumb--GridItem a") ?: selectFirst("a") ?: return null
         val url = link.attr("abs:href").takeIf { it.isNotEmpty() } ?: return null
-        val titleEl = selectFirst("strong.hasyear") ?: return null
+        val titleEl = selectFirst("h2.hasyear, strong.hasyear") ?: return null
         val title = titleEl.text().trim()
             .replace(Regex("""\s*\(\d{4}\)\s*$"""), "")
             .trim()
             .takeIf { it.isNotEmpty() } ?: return null
         val year = titleEl.selectFirst("span.year")?.text()?.trim('(', ')', ' ')?.toIntOrNull()
-        val poster = selectFirst("span.BG--GridItem")?.attr("data-lazy-style")
-            ?.let { Regex("""--image:url\((.*?)\)""").find(it)?.groupValues?.get(1) }
+        val bg = selectFirst("span.BG--GridItem")
+        val poster = bg?.attr("data-src")?.ifBlank { null }
+            ?: bg?.attr("data-lazy-style")
+                ?.let { Regex("""--image:url\((.*?)\)""").find(it)?.groupValues?.get(1) }
 
         val isSeries =
             url.contains("%D9%85%D8%B3%D9%84%D8%B3%D9%84") || url.contains("%D8%AD%D9%84%D9%82%D8%A9")
@@ -148,7 +150,7 @@ class WeCimaProvider : MainAPI() {
                 ?.attr("data-id")
 
             fun parseEpisodes(doc: Document, seasonNum: Int?) {
-                doc.select(".EpisodesList a[href]").forEach { a ->
+                doc.select(".EpisodesList a[href], a.hoverable[href]").forEach { a ->
                     val epUrl = a.attr("abs:href").takeIf { it.isNotEmpty() } ?: return@forEach
                     val epName = a.selectFirst("episodetitle")?.text()?.trim()
                     val epNum = epName?.let { Regex("""\d+""").find(it)?.value?.toIntOrNull() }
