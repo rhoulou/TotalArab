@@ -38,6 +38,7 @@ class AkwamProvider : MainAPI() {
      */
     private val akwamBases = listOf("https://akwam.it", "https://ak.sv")
     private var currentBase = akwamBases.first()
+    private val base get() = currentBase
 
     private suspend fun fetchDocument(url: String, headers: Map<String, String> = emptyMap()): Document {
         var lastError: Exception? = null
@@ -95,7 +96,7 @@ class AkwamProvider : MainAPI() {
             }
 
             if (list.isEmpty()) throw ErrorLoadingException()
-            return HomePageResponse(listOf(HomePageList(request.name ?: "قائمة", list)))
+            return newHomePageResponse(listOf(HomePageList(request.name ?: "قائمة", list)))
         }
 
         val urls = listOf(
@@ -143,7 +144,7 @@ class AkwamProvider : MainAPI() {
         }
 
         if (items.isEmpty()) throw ErrorLoadingException()
-        return HomePageResponse(items)
+        return newHomePageResponse(items)
     }
 
     override suspend fun search(query: String): List<SearchResponse> {
@@ -178,8 +179,9 @@ class AkwamProvider : MainAPI() {
         val plot = mainDoc.selectFirst("h2:contains(قصة المسلسل) + div > p")?.text()?.trim()
             ?: mainDoc.selectFirst("meta[name=description]")?.attr("content")?.trim()
 
-        val rating = mainDoc.selectFirst("span.mx-2:contains(/)")
-            ?.text()?.substringAfter("/")?.trim()?.toRatingInt()
+        val score = mainDoc.selectFirst("span.mx-2:contains(/)")
+            ?.text()?.substringAfter("/")?.trim()
+            ?.let { Score.from10(it) }
 
         val tags =
             mainDoc.select("div.font-size-16.text-white a[href*='/genre/'], div.font-size-16.text-white a[href*='/category/']")
@@ -230,7 +232,7 @@ class AkwamProvider : MainAPI() {
                 this.plot = plot
                 this.year = year
                 this.tags = tags
-                this.rating = rating
+                this.score = score
                 this.recommendations = recommendations
             }
         }
@@ -275,7 +277,7 @@ class AkwamProvider : MainAPI() {
                 this.plot = plot
                 this.year = year
                 this.tags = tags
-                this.rating = rating
+                this.score = score
                 this.recommendations = recommendations
             }
         }
@@ -291,7 +293,7 @@ class AkwamProvider : MainAPI() {
             this.plot = plot
             this.year = year
             this.tags = tags
-            this.rating = rating
+            this.score = score
             this.recommendations = recommendations
         }
     }
