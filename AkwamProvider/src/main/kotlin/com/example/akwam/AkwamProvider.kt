@@ -6,6 +6,7 @@ import com.lagradost.cloudstream3.utils.ExtractorLinkType
 import com.lagradost.cloudstream3.utils.Qualities
 import com.lagradost.cloudstream3.utils.loadExtractor
 import org.jsoup.Jsoup
+import java.net.URI
 import java.net.URLEncoder
 import com.lagradost.cloudstream3.utils.newExtractorLink
 import com.lagradost.cloudstream3.utils.getQualityFromName
@@ -358,30 +359,28 @@ class AkwamProvider : MainAPI() {
             }
 
             val watchPathElement = step1Doc.selectFirst("a.link-show")
-            val pageIdElement = step1Doc.selectFirst("input#page_id")
 
-            if (watchPathElement == null || pageIdElement == null) {
+            if (watchPathElement == null) {
                 return false
             }
 
-            val watchPath =
+            val rawWatchUrl =
                 watchPathElement.attr("href").ifBlank { watchPathElement.attr("abs:href") }
-            val pageId = pageIdElement.attr("value").ifBlank { pageIdElement.attr("data-value") }
 
-            if (watchPath.isBlank() || pageId.isBlank()) {
+            if (rawWatchUrl.isBlank()) {
                 return false
             }
 
-            val main = base.trimEnd('/')
-            val watchSuffix = run {
-                val idx = watchPath.indexOf("watch")
-                if (idx >= 0) watchPath.substring(idx + "watch".length) else watchPath
-            }.trim()
-            val watchUrl = (main + "/watch" + watchSuffix.trimEnd('/') + "/" + pageId).replace(
-                "//watch",
-                "/watch"
-            )
-                .replace(":/", "://")
+            val watchUrl = if (rawWatchUrl.startsWith("http")) {
+                try {
+                    val path = URI(rawWatchUrl).rawPath ?: ""
+                    base.trimEnd('/') + "/" + path.trimStart('/')
+                } catch (e: Exception) {
+                    rawWatchUrl
+                }
+            } else {
+                base.trimEnd('/') + "/" + rawWatchUrl.trimStart('/')
+            }
 
             val step2Doc = try {
                 fetchDocument(watchUrl)

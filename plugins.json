@@ -2,9 +2,9 @@
     {
         "name": "Akwam",
         "internalName": "AkwamProvider",
-        "url": "https://raw.githubusercontent.com/rhoulou/TotalArab/main/AkwamProvider_1.cs3",
+        "url": "https://raw.githubusercontent.com/rhoulou/TotalArab/main/AkwamProvider_2.cs3",
         "status": 1,
-        "version": 1,
+        "version": 2,
         "apiVersion": 1,
         "authors": [
             "rhoulou"
@@ -19,7 +19,7 @@
         ],
         "iconUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQq1OMQIgGXbMMPF8_szyAFJAjGV50VjCpZrR-Bgmlwvg&s",
         "repositoryUrl": "https://github.com/rhoulou/TotalArab",
-        "fileSize": 28976,
-        "fileHash": "sha256-c2efc26f7b67febb0709a2367f3b1f43bdf5750bd2dbf51d18e229ca6c73a850"
+        "fileSize": 28256,
+        "fileHash": "sha256-0444be2a3cefc408ee61500efe99673cea9dd0db2f8112587da087611a31e12e"
     }
 ]
