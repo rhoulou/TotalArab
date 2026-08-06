@@ -8,7 +8,7 @@ ANDROID_HOME="${ANDROID_HOME:-/opt/android-sdk}"
 GRADLE="${GRADLE:-/tmp/opencode/gradle-8.12/bin/gradle}"
 GH_REPO="rhoulou/TotalArab"
 SITE_URL="https://raw.githubusercontent.com/rhoulou/TotalArab/main"
-PROVIDERS=(AkwamProvider)
+PROVIDERS=(AkwamProvider WeCimaProvider)
 NEW_VERSION="${1:-}"
 
 tasks=()
@@ -116,7 +116,7 @@ commit() {
     git add -A
     if ! git diff --cached --quiet; then
         if [ -n "$NEW_VERSION" ]; then
-            git commit -m "v$NEW_VERSION: Akwam provider"
+            git commit -m "v$NEW_VERSION: Akwam + WeCima providers"
         else
             git commit -m "rebuild plugins"
         fi
@@ -132,7 +132,7 @@ verify_served() {
 import json, os, urllib.request, hashlib
 base = os.environ["SITE_URL"]
 expected = int(os.environ["EXPECTED"])
-names = ('AkwamProvider',)
+names = ('AkwamProvider', 'WeCimaProvider')
 pj = json.load(urllib.request.urlopen(base + "/plugins.json", timeout=30))
 for p in pj:
     if p['internalName'] not in names:
@@ -156,8 +156,8 @@ for _ in $(seq 1 12); do
 try:
     v=$EXPECTED
     d=json.load(sys.stdin)
-    ok=[p for p in d if p['internalName'] in ('AkwamProvider') and p['version']==v]
-    sys.exit(0 if len(ok)==1 else 1)
+    ok=[p for p in d if p['internalName'] in ('AkwamProvider', 'WeCimaProvider') and p['version']==v]
+    sys.exit(0 if len(ok)==2 else 1)
 except Exception:
     sys.exit(1)"; then
         echo "Live on raw: all providers at v$EXPECTED"

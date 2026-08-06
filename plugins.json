@@ -2,9 +2,9 @@
     {
         "name": "Akwam",
         "internalName": "AkwamProvider",
-        "url": "https://raw.githubusercontent.com/rhoulou/TotalArab/main/AkwamProvider_2.cs3",
+        "url": "https://raw.githubusercontent.com/rhoulou/TotalArab/main/AkwamProvider_3.cs3",
         "status": 1,
-        "version": 2,
+        "version": 3,
         "apiVersion": 1,
         "authors": [
             "rhoulou"
@@ -19,7 +19,28 @@
         ],
         "iconUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQq1OMQIgGXbMMPF8_szyAFJAjGV50VjCpZrR-Bgmlwvg&s",
         "repositoryUrl": "https://github.com/rhoulou/TotalArab",
-        "fileSize": 28256,
-        "fileHash": "sha256-0444be2a3cefc408ee61500efe99673cea9dd0db2f8112587da087611a31e12e"
+        "fileSize": 28254,
+        "fileHash": "sha256-2abd536a72daa156ef832b6b8bcf9cbb278790aa5edd1d41c112c1ec0c6af562"
+    },
+    {
+        "name": "WeCima",
+        "internalName": "WeCimaProvider",
+        "url": "https://raw.githubusercontent.com/rhoulou/TotalArab/main/WeCimaProvider_3.cs3",
+        "status": 1,
+        "version": 3,
+        "apiVersion": 1,
+        "authors": [
+            "rhoulou"
+        ],
+        "description": "Movies & series from WeCima (Arabic). Scrapes wecima.cx directly from the phone with wecima.watch/wecima.movie/wecima.click fallbacks for domain changes.",
+        "language": "ar",
+        "tvTypes": [
+            "TvSeries",
+            "Movie"
+        ],
+        "iconUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTMF29SVl7LOlFaI8GHbFYxuvm-Z_Q5s7IPWNMhx_SbkQ&s",
+        "repositoryUrl": "https://github.com/rhoulou/TotalArab",
+        "fileSize": 18972,
+        "fileHash": "sha256-f4f1e53a1315fcc4e4055200288d93776c620a09b68bca4b7acad467fc015c54"
     }
 ]
