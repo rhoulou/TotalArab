@@ -3,6 +3,8 @@ package com.example.wecima
 import android.util.Base64
 import com.lagradost.cloudstream3.*
 import com.lagradost.cloudstream3.utils.ExtractorLink
+import com.lagradost.cloudstream3.utils.ExtractorLinkType
+import com.lagradost.cloudstream3.utils.newExtractorLink
 import com.totalarab.util.ArabicTitleParser
 import org.jsoup.nodes.Document
 import org.jsoup.nodes.Element
@@ -219,11 +221,26 @@ class WeCimaProvider : MainAPI() {
     ): Boolean {
         val watchUrl = data
 
+        suspend fun emitDbg(msg: String) {
+            callback(
+                newExtractorLink("WeCima", msg, "https://wecima.cx/") {
+                    this.type = ExtractorLinkType.VIDEO
+                    this.quality = 0
+                }
+            )
+        }
+
+        val dbg = StringBuilder("DBG")
+        dbg.append("|data=${if (data.isNullOrBlank()) "NULL" else data.take(70)}")
+
         val doc = try {
             fetchDocument(watchUrl)
         } catch (e: Exception) {
-            return false
+            dbg.append("|fetch=FAIL:${e.javaClass.simpleName}:${e.message?.take(60)}")
+            emitDbg(dbg.toString())
+            return true
         }
+        dbg.append("|base=$currentBase")
 
         fun keyOf(url: String): String {
             val host = runCatching { url.substringAfter("//").substringBefore("/").lowercase() }
@@ -260,7 +277,9 @@ class WeCimaProvider : MainAPI() {
             }
         }
 
+        var dlCount = 0
         doc.select("li.download-item.openLinkDown[data-href]").forEach { item ->
+            dlCount++
             val encoded = item.attr("data-href").replace("+", "")
             if (encoded.isBlank()) return@forEach
             val quality = WeCimaResolver.parseQuality(
@@ -274,18 +293,33 @@ class WeCimaProvider : MainAPI() {
             }
         }
 
-        if (urls.isEmpty()) return false
+        dbg.append("|sv=${servers.size}|dl=$dlCount")
+
+        if (urls.isEmpty()) {
+            dbg.append("|targets=0")
+            emitDbg(dbg.toString())
+            return true
+        }
+        dbg.append("|targets=${urls.size}")
 
         var emitted = 0
+        val hostOk = HashMap<String, Boolean>()
+        val hostErr = HashMap<String, String>()
         for ((key, url) in urls) {
+            val host = key.substringBefore("/").ifEmpty { key }
             try {
-                if (WeCimaResolver.resolve(url, watchUrl, qualities[key], subtitleCallback, callback)) {
-                    emitted++
-                }
-            } catch (_: Exception) {
+                val ok = WeCimaResolver.resolve(url, watchUrl, qualities[key], subtitleCallback, callback)
+                if (ok) emitted++
+                hostOk[host] = (hostOk[host] ?: false) || ok
+            } catch (e: Exception) {
+                hostErr[host] = e.javaClass.simpleName
+                hostOk.putIfAbsent(host, false)
             }
         }
+        dbg.append("|" + hostOk.map { (h, ok) -> "$h=${if (ok) "OK" else (hostErr[h] ?: "SKIP")}" }.joinToString(","))
+        dbg.append("|emit=$emitted")
 
-        return emitted > 0
+        emitDbg(dbg.toString())
+        return true
     }
 }
