@@ -29,7 +29,16 @@ object ProviderDiagnostics {
     )
 
     /** Hosts handled by CloudStream's built-in loadExtractor (cannot be resolved here). */
-    private val extractorHosts = listOf("lulustream", "dood", "dhcplay", "mixdrop", "playmogo")
+    private val extractorHosts = listOf(
+        "lulustream", "lulu", "dood", "dhcplay", "mixdrop", "mdy", "playmogo",
+        "voe", "streamwish", "streamsb", "sbfast", "xstreamcdn", "fembed",
+        "filemoon", "jwplayer", "vidhidepro", "rabbitstream", "megacloud",
+        "rapidvid", "supervideo", "filelions", "vidplay", "streamtape",
+        "vidoza", "embedgram", "streamhub", "streamlare", "slmaxed",
+        "evoload", "streampury", "upstream", "yourupload", "vidcloud",
+        "gogoanime", "streamplay", "multimovies", "moviesm4u", "hxfile",
+        "filemoon.sx", "gohq"
+    )
 
     fun isDiagnosticQuery(query: String): Boolean = query.trim().startsWith("@@diag")
 

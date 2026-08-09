@@ -46,10 +46,19 @@ object WeCimaResolver {
                 host.contains("savefiles") -> resolveSavefiles(normalized, knownQuality, callback)
                 host.contains("vibuxer") -> resolveVibuxer(normalized, knownQuality, callback)
                 host.contains("miixdrop") -> resolveMiixdrop(normalized, knownQuality, callback)
-                host.contains("mixdrop") || host.contains("lulu") || host.contains("dood") ||
-                    host.contains("dhcplay") || host.contains("playmogo") ->
-                    resolveViaExtractor(normalized, referer, subtitleCallback, callback)
-                else -> resolveGeneric(normalized, knownQuality, callback)
+                else -> {
+                    // Any host with a CloudStream built-in/plugin extractor
+                    // (mixdrop, lulustream, dood, dhcplay, playmogo, voe,
+                    // streamsb, xstreamcdn, ...) is resolved by loadExtractor,
+                    // which matches the URL against the app's extractor
+                    // registry. Only fall back to regex scraping when it
+                    // emits nothing.
+                    if (!resolveViaExtractor(normalized, referer, subtitleCallback, callback)) {
+                        resolveGeneric(normalized, knownQuality, callback)
+                    } else {
+                        true
+                    }
+                }
             }
         } catch (_: Exception) {
             false
