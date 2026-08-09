@@ -7,6 +7,7 @@ import com.lagradost.cloudstream3.utils.ExtractorLinkType
 import com.lagradost.cloudstream3.utils.newExtractorLink
 import com.totalarab.util.ArabicTitleParser
 import com.totalarab.util.ProviderDiagnostics
+import okhttp3.Interceptor
 import org.jsoup.nodes.Document
 import org.jsoup.nodes.Element
 import java.net.URLEncoder
@@ -20,6 +21,26 @@ class WeCimaProvider : MainAPI() {
         TvType.Movie,
         TvType.TvSeries
     )
+
+    /**
+     * WeCima's CDNs (abstream/delucloud and friends) serve 403 to any
+     * non-browser User-Agent. ExoPlayer builds its data source from
+     * [ExtractorLink.headers] and this interceptor, so force the browser UA
+     * (and the embed page as Referer) on every media request.
+     */
+    override fun getVideoInterceptor(extractorLink: ExtractorLink): Interceptor {
+        return Interceptor { chain ->
+            val request = chain.request().newBuilder()
+                .header("User-Agent", WeCimaResolver.userAgent)
+                .apply {
+                    extractorLink.referer?.takeIf { it.isNotBlank() }?.let {
+                        header("Referer", it)
+                    }
+                }
+                .build()
+            chain.proceed(request)
+        }
+    }
 
     /**
      * WeCima rotates its domain frequently. All mirrors run the same engine;

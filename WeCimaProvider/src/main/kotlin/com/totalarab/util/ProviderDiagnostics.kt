@@ -173,6 +173,7 @@ object ProviderDiagnostics {
     private suspend fun testLinks(provider: MainAPI, url: String, report: Report) {
         val emittedByHost = LinkedHashMap<String, Int>()
         var dbg = ""
+        var sampleLink: ExtractorLink? = null
 
         val ok = try {
             provider.loadLinks(url, false, {}, { link ->
@@ -181,6 +182,7 @@ object ProviderDiagnostics {
                 } else {
                     val host = hostOf(link.url)
                     emittedByHost[host] = (emittedByHost[host] ?: 0) + 1
+                    if (sampleLink == null) sampleLink = link
                 }
             })
         } catch (e: Exception) {
@@ -191,6 +193,11 @@ object ProviderDiagnostics {
             )
             log("      [loadLinks EXC] ${e.javaClass.simpleName}: ${e.message?.take(100)}")
             return
+        }
+
+        sampleLink?.let { l ->
+            val ua = l.headers?.entries?.firstOrNull { it.key.equals("User-Agent", true) }?.value
+            log("      [hdr] User-Agent=${ua?.take(40) ?: "(none)"} Referer=${l.referer?.take(60) ?: "(none)"} nHeaders=${l.headers?.size ?: 0}")
         }
 
         // WeCima reports via the DBG link; Akwam relies on emitted links only.

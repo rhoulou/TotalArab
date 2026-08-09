@@ -19,7 +19,7 @@ import com.lagradost.cloudstream3.utils.newExtractorLink
  */
 object WeCimaResolver {
 
-    private const val userAgent =
+    const val userAgent =
         "Mozilla/5.0 (Linux; Android 13; SM-G991B) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Mobile Safari/537.36"
 
     private val fileRegex = Regex("""file\s*:\s*"([^"]+\.m3u8[^"]*)"""")
@@ -173,6 +173,8 @@ object WeCimaResolver {
         var emitted = 0
         for (link in links) {
             if (link.url.isBlank()) continue
+            link.headers = headers(referer)
+            link.referer = referer
             callback(link)
             emitted++
         }
