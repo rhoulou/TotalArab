@@ -164,7 +164,8 @@ class AkwamProvider : MainAPI() {
             val poster = getPoster(it)
 
             val urlWithPoster = "$href#${poster ?: ""}"
-            newMovieSearchResponse(name = title, url = urlWithPoster, type = TvType.Movie) {
+            val type = if (href.contains("/series/") || href.contains("/shows/")) TvType.TvSeries else TvType.Movie
+            newMovieSearchResponse(name = title, url = urlWithPoster, type = type) {
                 this.posterUrl = poster
             }
         }

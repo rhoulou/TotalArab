@@ -2,6 +2,7 @@ package com.example.wecima
 
 import android.util.Base64
 import com.lagradost.cloudstream3.*
+import com.lagradost.cloudstream3.utils.AppUtils.parseJson
 import com.lagradost.cloudstream3.utils.ExtractorLink
 import com.lagradost.cloudstream3.utils.ExtractorLinkType
 import com.lagradost.cloudstream3.utils.newExtractorLink
@@ -11,6 +12,19 @@ import okhttp3.Interceptor
 import org.jsoup.nodes.Document
 import org.jsoup.nodes.Element
 import java.net.URLEncoder
+
+private data class WecimaSearchItemJson(
+    val title: String? = null,
+    val year: String? = null,
+    val slug: String? = null,
+    val image: String? = null,
+    val istv: Int? = null
+)
+
+private data class WecimaSearchResponseJson(
+    val status: Boolean? = null,
+    val results: List<WecimaSearchItemJson>? = null
+)
 
 class WeCimaProvider : MainAPI() {
     override var mainUrl = "https://wecima.cx"
@@ -149,13 +163,48 @@ class WeCimaProvider : MainAPI() {
             ProviderDiagnostics.run(this, query)
             return emptyList()
         }
-        val q = URLEncoder.encode(query, "utf-8")
-        val doc = fetchDocument("$base/?s=$q")
-        return doc.select("div.GridItem").mapNotNull { it.toSearchResponse() }
+
+        val candidates = (listOf(currentBase) + wecimaBases).distinct()
+        for (candidate in candidates) {
+            try {
+                val responseText = app.post(
+                    "$candidate/search",
+                    data = mapOf("q" to query),
+                    headers = mapOf("X-Requested-With" to "XMLHttpRequest", "Referer" to "$candidate/")
+                ).text
+                val parsed = parseJson<WecimaSearchResponseJson>(responseText)
+                val results = parsed.results
+                if (results != null) {
+                    currentBase = candidate
+                    return results.mapNotNull { item ->
+                        val title = item.title ?: return@mapNotNull null
+                        val slug = item.slug ?: return@mapNotNull null
+                        if (item.istv == 2) return@mapNotNull null
+                        val type = if (item.istv == 0) TvType.Movie else TvType.TvSeries
+                        val prefix = if (item.istv == 0) "/watch/" else "/series/"
+                        val encodedSlug = URLEncoder.encode(slug, "UTF-8").replace("+", "%20")
+                        val itemUrl = if (slug.startsWith("http")) slug else "$candidate$prefix$encodedSlug"
+                        newMovieSearchResponse(title, itemUrl, type) {
+                            this.posterUrl = item.image
+                            this.year = item.year?.toIntOrNull()
+                        }
+                    }
+                }
+            } catch (_: Exception) {
+            }
+        }
+        return emptyList()
     }
 
     override suspend fun load(url: String): LoadResponse {
         val doc = fetchDocument(url)
+
+        // Episode pages (/watch/...) resolve to their series via the breadcrumb,
+        // so opening an episode link directly lands on the full season/episode list.
+        val seriesLink = doc.selectFirst(".Breadcrumb--UX a[href*='/series/']")
+        if (url.contains("/watch/") && seriesLink != null) {
+            return load(seriesLink.attr("abs:href"))
+        }
 
         val rawTitle = doc.selectFirst("h1")?.text()?.trim()
             ?.replace(Regex("""\s+بجودة\s+.*$"""), "")?.trim()

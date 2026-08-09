@@ -2,9 +2,9 @@
     {
         "name": "Akwam",
         "internalName": "AkwamProvider",
-        "url": "https://raw.githubusercontent.com/rhoulou/TotalArab/main/AkwamProvider_10.cs3",
+        "url": "https://raw.githubusercontent.com/rhoulou/TotalArab/main/AkwamProvider_11.cs3",
         "status": 1,
-        "version": 10,
+        "version": 11,
         "apiVersion": 1,
         "authors": [
             "rhoulou"
@@ -19,15 +19,15 @@
         ],
         "iconUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQq1OMQIgGXbMMPF8_szyAFJAjGV50VjCpZrR-Bgmlwvg&s",
         "repositoryUrl": "https://github.com/rhoulou/TotalArab",
-        "fileSize": 50292,
-        "fileHash": "sha256-6c6c6c44828495ca5929d13d15353624a5bd94d7d0b65773678ac7a096c82a57"
+        "fileSize": 50443,
+        "fileHash": "sha256-26b0464511a093ab6e17c0197f76c7f2a47a5527c774c3fffaa1129c34de224e"
     },
     {
         "name": "WeCima",
         "internalName": "WeCimaProvider",
-        "url": "https://raw.githubusercontent.com/rhoulou/TotalArab/main/WeCimaProvider_10.cs3",
+        "url": "https://raw.githubusercontent.com/rhoulou/TotalArab/main/WeCimaProvider_11.cs3",
         "status": 1,
-        "version": 10,
+        "version": 11,
         "apiVersion": 1,
         "authors": [
             "rhoulou"
@@ -40,7 +40,7 @@
         ],
         "iconUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTMF29SVl7LOlFaI8GHbFYxuvm-Z_Q5s7IPWNMhx_SbkQ&s",
         "repositoryUrl": "https://github.com/rhoulou/TotalArab",
-        "fileSize": 57789,
-        "fileHash": "sha256-1d96bb4b95bafc51078f33f6cc52ac2e88fffa7372030bd402cb015211db729b"
+        "fileSize": 62429,
+        "fileHash": "sha256-a521a831349c7319e1c2ddc2635db00552a0428ffb0f493e07761591f6cb3eb4"
     }
 ]
