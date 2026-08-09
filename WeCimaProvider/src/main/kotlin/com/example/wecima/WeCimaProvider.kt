@@ -6,6 +6,7 @@ import com.lagradost.cloudstream3.utils.ExtractorLink
 import com.lagradost.cloudstream3.utils.ExtractorLinkType
 import com.lagradost.cloudstream3.utils.newExtractorLink
 import com.totalarab.util.ArabicTitleParser
+import com.totalarab.util.ProviderDiagnostics
 import org.jsoup.nodes.Document
 import org.jsoup.nodes.Element
 import java.net.URLEncoder
@@ -123,6 +124,10 @@ class WeCimaProvider : MainAPI() {
     }
 
     override suspend fun search(query: String): List<SearchResponse> {
+        if (ProviderDiagnostics.isDiagnosticQuery(query)) {
+            ProviderDiagnostics.run(this, query)
+            return emptyList()
+        }
         val q = URLEncoder.encode(query, "utf-8")
         val doc = fetchDocument("$base/?s=$q")
         return doc.select("div.GridItem").mapNotNull { it.toSearchResponse() }

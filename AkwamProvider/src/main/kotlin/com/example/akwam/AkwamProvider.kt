@@ -14,6 +14,7 @@ import org.jsoup.nodes.Element
 import com.lagradost.cloudstream3.utils.AppUtils.toJson
 import com.lagradost.cloudstream3.utils.AppUtils.parseJson
 import com.totalarab.util.ArabicTitleParser
+import com.totalarab.util.ProviderDiagnostics
 import kotlin.Pair
 import org.jsoup.nodes.Document
 
@@ -150,6 +151,10 @@ class AkwamProvider : MainAPI() {
     }
 
     override suspend fun search(query: String): List<SearchResponse> {
+        if (ProviderDiagnostics.isDiagnosticQuery(query)) {
+            ProviderDiagnostics.run(this, query)
+            return emptyList()
+        }
         val q = URLEncoder.encode(query, "utf-8")
         val url = "$base/search?q=$q"
         val document = fetchDocument(url)
