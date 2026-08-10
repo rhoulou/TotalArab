@@ -42,5 +42,664 @@
         "repositoryUrl": "https://github.com/rhoulou/TotalArab",
         "fileSize": 62429,
         "fileHash": "sha256-a521a831349c7319e1c2ddc2635db00552a0428ffb0f493e07761591f6cb3eb4"
+    },
+    {
+        "name": "TVgarden(Famelack)",
+        "internalName": "TVgardenProvider",
+        "url": "https://raw.githubusercontent.com/rhoulou/TotalArab/main/TVgardenProvider_1.cs3",
+        "status": 1,
+        "version": 1,
+        "apiVersion": 1,
+        "authors": [
+            "rhoulou"
+        ],
+        "description": "TVgarden(Famelack) (Arabic). Ported from Abodabodd/re-3arabi (https://github.com/Abodabodd/re-3arabi) and maintained in TotalArab.",
+        "language": "ar",
+        "tvTypes": [
+            "Live"
+        ],
+        "iconUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS9Lci-tXtOtWaHcEp9An7bqIkXs4yzH7EcfA&s",
+        "repositoryUrl": "https://github.com/rhoulou/TotalArab",
+        "fileSize": 15616,
+        "fileHash": "sha256-063e7531a1aa40642732f99d3c9f9c33f3c2def042bffddacbec229760278f3d"
+    },
+    {
+        "name": "CimaLight",
+        "internalName": "CimalightProvider",
+        "url": "https://raw.githubusercontent.com/rhoulou/TotalArab/main/CimalightProvider_1.cs3",
+        "status": 1,
+        "version": 1,
+        "apiVersion": 1,
+        "authors": [
+            "rhoulou"
+        ],
+        "description": "CimaLight (Arabic). Ported from Abodabodd/re-3arabi (https://github.com/Abodabodd/re-3arabi) and maintained in TotalArab.",
+        "language": "ar",
+        "tvTypes": [
+            "Movie",
+            "TvSeries"
+        ],
+        "iconUrl": null,
+        "repositoryUrl": "https://github.com/rhoulou/TotalArab",
+        "fileSize": 25645,
+        "fileHash": "sha256-5400deb79b62b4f50cccddf542870ff33285dd0e1ab36245bd65f1b88cd642c3"
+    },
+    {
+        "name": "Anime4Up",
+        "internalName": "Anime4upProvider",
+        "url": "https://raw.githubusercontent.com/rhoulou/TotalArab/main/Anime4upProvider_1.cs3",
+        "status": 1,
+        "version": 1,
+        "apiVersion": 1,
+        "authors": [
+            "rhoulou"
+        ],
+        "description": "Anime4Up (Arabic). Ported from Abodabodd/re-3arabi (https://github.com/Abodabodd/re-3arabi) and maintained in TotalArab.",
+        "language": "ar",
+        "tvTypes": [
+            "Anime",
+            "AnimeMovie",
+            "OVA"
+        ],
+        "iconUrl": null,
+        "repositoryUrl": "https://github.com/rhoulou/TotalArab",
+        "fileSize": 24264,
+        "fileHash": "sha256-c9ac411b38e3a1f84d30654d6aa8407aa840f32ecb5fe4b0317f8d4e77d529a7"
+    },
+    {
+        "name": "Dima Toon",
+        "internalName": "DimaToonProvider",
+        "url": "https://raw.githubusercontent.com/rhoulou/TotalArab/main/DimaToonProvider_1.cs3",
+        "status": 1,
+        "version": 1,
+        "apiVersion": 1,
+        "authors": [
+            "rhoulou"
+        ],
+        "description": "Dima Toon (Arabic). Ported from Abodabodd/re-3arabi (https://github.com/Abodabodd/re-3arabi) and maintained in TotalArab.",
+        "language": "ar",
+        "tvTypes": [
+            "Cartoon"
+        ],
+        "iconUrl": null,
+        "repositoryUrl": "https://github.com/rhoulou/TotalArab",
+        "fileSize": 12461,
+        "fileHash": "sha256-2a1584dcc50f258390d5131c827f2b0146f9cb0aee2b89cee0c802c6bdce15b8"
+    },
+    {
+        "name": "TukTukcima",
+        "internalName": "TuktukcimaProvider",
+        "url": "https://raw.githubusercontent.com/rhoulou/TotalArab/main/TuktukcimaProvider_1.cs3",
+        "status": 1,
+        "version": 1,
+        "apiVersion": 1,
+        "authors": [
+            "rhoulou"
+        ],
+        "description": "TukTukcima (Arabic). Ported from Abodabodd/re-3arabi (https://github.com/Abodabodd/re-3arabi) and maintained in TotalArab.",
+        "language": "ar",
+        "tvTypes": [
+            "Movie",
+            "TvSeries",
+            "Anime"
+        ],
+        "iconUrl": null,
+        "repositoryUrl": "https://github.com/rhoulou/TotalArab",
+        "fileSize": 24758,
+        "fileHash": "sha256-fa55d34afd14d0f6ce3e4f31c1fe36303de6254eb413fc50a28523833e07cd4e"
+    },
+    {
+        "name": "Syria Live",
+        "internalName": "SyrialiveProvider",
+        "url": "https://raw.githubusercontent.com/rhoulou/TotalArab/main/SyrialiveProvider_1.cs3",
+        "status": 1,
+        "version": 1,
+        "apiVersion": 1,
+        "authors": [
+            "rhoulou"
+        ],
+        "description": "Syria Live (Arabic). Ported from Abodabodd/re-3arabi (https://github.com/Abodabodd/re-3arabi) and maintained in TotalArab.",
+        "language": "ar",
+        "tvTypes": [
+            "Live",
+            "Movie"
+        ],
+        "iconUrl": null,
+        "repositoryUrl": "https://github.com/rhoulou/TotalArab",
+        "fileSize": 17244,
+        "fileHash": "sha256-d9c2b7327f61cdd17090fd4f7e993afedb223887dc2c34ac6ae40a3ae37f8c3e"
+    },
+    {
+        "name": "Viu",
+        "internalName": "ViuProvider",
+        "url": "https://raw.githubusercontent.com/rhoulou/TotalArab/main/ViuProvider_1.cs3",
+        "status": 1,
+        "version": 1,
+        "apiVersion": 1,
+        "authors": [
+            "rhoulou"
+        ],
+        "description": "Viu (Arabic). Ported from Abodabodd/re-3arabi (https://github.com/Abodabodd/re-3arabi) and maintained in TotalArab.",
+        "language": "ar",
+        "tvTypes": [
+            "Movie",
+            "TvSeries",
+            "AsianDrama"
+        ],
+        "iconUrl": null,
+        "repositoryUrl": "https://github.com/rhoulou/TotalArab",
+        "fileSize": 38264,
+        "fileHash": "sha256-4d32bc46d2e73ae512f8dbf6f2efe228253af768105bc3eb78b583d80765259a"
+    },
+    {
+        "name": "Tuni flix",
+        "internalName": "TuniflixProvider",
+        "url": "https://raw.githubusercontent.com/rhoulou/TotalArab/main/TuniflixProvider_1.cs3",
+        "status": 1,
+        "version": 1,
+        "apiVersion": 1,
+        "authors": [
+            "rhoulou"
+        ],
+        "description": "Tuni flix (Arabic). Ported from Abodabodd/re-3arabi (https://github.com/Abodabodd/re-3arabi) and maintained in TotalArab.",
+        "language": "ar",
+        "tvTypes": [
+            "Movie",
+            "TvSeries"
+        ],
+        "iconUrl": null,
+        "repositoryUrl": "https://github.com/rhoulou/TotalArab",
+        "fileSize": 27852,
+        "fileHash": "sha256-b7c5277601633da8fd28f6dbedd27854a38e538e366224e4e19fbf567449f379"
+    },
+    {
+        "name": "CimaTn",
+        "internalName": "CimatnProvider",
+        "url": "https://raw.githubusercontent.com/rhoulou/TotalArab/main/CimatnProvider_1.cs3",
+        "status": 1,
+        "version": 1,
+        "apiVersion": 1,
+        "authors": [
+            "rhoulou"
+        ],
+        "description": "CimaTn (Arabic). Ported from Abodabodd/re-3arabi (https://github.com/Abodabodd/re-3arabi) and maintained in TotalArab.",
+        "language": "ar",
+        "tvTypes": [
+            "Movie",
+            "TvSeries"
+        ],
+        "iconUrl": null,
+        "repositoryUrl": "https://github.com/rhoulou/TotalArab",
+        "fileSize": 28385,
+        "fileHash": "sha256-2c14881266efc7296dce3f8a5aa99e88b8a64d3be3405ff5bb4ebf4c27580a8a"
+    },
+    {
+        "name": "Cee",
+        "internalName": "CeeProvider",
+        "url": "https://raw.githubusercontent.com/rhoulou/TotalArab/main/CeeProvider_1.cs3",
+        "status": 1,
+        "version": 1,
+        "apiVersion": 1,
+        "authors": [
+            "rhoulou"
+        ],
+        "description": "Cee (Arabic). Ported from Abodabodd/re-3arabi (https://github.com/Abodabodd/re-3arabi) and maintained in TotalArab.",
+        "language": "ar",
+        "tvTypes": [
+            "Movie",
+            "TvSeries"
+        ],
+        "iconUrl": null,
+        "repositoryUrl": "https://github.com/rhoulou/TotalArab",
+        "fileSize": 44132,
+        "fileHash": "sha256-6a6f3b319ca9ee3976daf47411b453eaa92557e57c388b6708a92bb1b98055c4"
+    },
+    {
+        "name": "Anime3rb",
+        "internalName": "Anime3rbProvider",
+        "url": "https://raw.githubusercontent.com/rhoulou/TotalArab/main/Anime3rbProvider_1.cs3",
+        "status": 1,
+        "version": 1,
+        "apiVersion": 1,
+        "authors": [
+            "rhoulou"
+        ],
+        "description": "Anime3rb (Arabic). Ported from Abodabodd/re-3arabi (https://github.com/Abodabodd/re-3arabi) and maintained in TotalArab.",
+        "language": "ar",
+        "tvTypes": [
+            "Anime",
+            "AnimeMovie"
+        ],
+        "iconUrl": null,
+        "repositoryUrl": "https://github.com/rhoulou/TotalArab",
+        "fileSize": 47389,
+        "fileHash": "sha256-58e56e889bcddf28688649230d92150e87c89c6b6338c5f711209e5108c445f9"
+    },
+    {
+        "name": "YouTube",
+        "internalName": "YoutubeProvider",
+        "url": "https://raw.githubusercontent.com/rhoulou/TotalArab/main/YoutubeProvider_1.cs3",
+        "status": 1,
+        "version": 1,
+        "apiVersion": 1,
+        "authors": [
+            "rhoulou"
+        ],
+        "description": "YouTube (Arabic). Ported from Abodabodd/re-3arabi (https://github.com/Abodabodd/re-3arabi) and maintained in TotalArab.",
+        "language": "ar",
+        "tvTypes": [
+            "Movie",
+            "Live"
+        ],
+        "iconUrl": "https://raw.githubusercontent.com/Abodabodd/Oldarabrepo/refs/heads/main/img/IMG_%D9%A2%D9%A0%D9%A2%D9%A5%D9%A1%D9%A2%D9%A0%D9%A6_%D9%A1%D9%A7%D9%A2%D9%A6%D9%A1%D9%A6.jpg",
+        "repositoryUrl": "https://github.com/rhoulou/TotalArab",
+        "fileSize": 142786,
+        "fileHash": "sha256-42b472885afc190b197639b0806114bda17c1da07832567f0f915cf9a961d58e"
+    },
+    {
+        "name": "LodyNet",
+        "internalName": "LodynetProvider",
+        "url": "https://raw.githubusercontent.com/rhoulou/TotalArab/main/LodynetProvider_1.cs3",
+        "status": 1,
+        "version": 1,
+        "apiVersion": 1,
+        "authors": [
+            "rhoulou"
+        ],
+        "description": "LodyNet (Arabic). Ported from Abodabodd/re-3arabi (https://github.com/Abodabodd/re-3arabi) and maintained in TotalArab.",
+        "language": "ar",
+        "tvTypes": [
+            "Movie",
+            "TvSeries",
+            "AsianDrama"
+        ],
+        "iconUrl": "https://lodynet.watch/wp-content/themes/Lodynet2020/Img/Logo.webp",
+        "repositoryUrl": "https://github.com/rhoulou/TotalArab",
+        "fileSize": 28882,
+        "fileHash": "sha256-bd91ace6756355d17c0fef63ce7721153e8530e9b4e85a3afad0aff259fbefe3"
+    },
+    {
+        "name": "Top Cinema",
+        "internalName": "TopcinemaProvider",
+        "url": "https://raw.githubusercontent.com/rhoulou/TotalArab/main/TopcinemaProvider_1.cs3",
+        "status": 1,
+        "version": 1,
+        "apiVersion": 1,
+        "authors": [
+            "rhoulou"
+        ],
+        "description": "Top Cinema (Arabic). Ported from Abodabodd/re-3arabi (https://github.com/Abodabodd/re-3arabi) and maintained in TotalArab.",
+        "language": "ar",
+        "tvTypes": [
+            "Movie",
+            "TvSeries"
+        ],
+        "iconUrl": null,
+        "repositoryUrl": "https://github.com/rhoulou/TotalArab",
+        "fileSize": 31419,
+        "fileHash": "sha256-54399f946d461ad6cef0e412824392a61f784f669d4eba4b948977a6e432b017"
+    },
+    {
+        "name": "FullMatchShows",
+        "internalName": "ReplaymatchProvider",
+        "url": "https://raw.githubusercontent.com/rhoulou/TotalArab/main/ReplaymatchProvider_1.cs3",
+        "status": 1,
+        "version": 1,
+        "apiVersion": 1,
+        "authors": [
+            "rhoulou"
+        ],
+        "description": "FullMatchShows (Arabic). Ported from Abodabodd/re-3arabi (https://github.com/Abodabodd/re-3arabi) and maintained in TotalArab.",
+        "language": "ar",
+        "tvTypes": [
+            "Movie"
+        ],
+        "iconUrl": "https://fullmatchshows.com/wp-content/uploads/2024/04/LOGOSASO.png",
+        "repositoryUrl": "https://github.com/rhoulou/TotalArab",
+        "fileSize": 28866,
+        "fileHash": "sha256-84723861cc9f89fb70fe632f458447d130730deadb2e1f61ca31ab718ef02a92"
+    },
+    {
+        "name": "bristege",
+        "internalName": "BristegeProvider",
+        "url": "https://raw.githubusercontent.com/rhoulou/TotalArab/main/BristegeProvider_1.cs3",
+        "status": 1,
+        "version": 1,
+        "apiVersion": 1,
+        "authors": [
+            "rhoulou"
+        ],
+        "description": "bristege (Arabic). Ported from Abodabodd/re-3arabi (https://github.com/Abodabodd/re-3arabi) and maintained in TotalArab.",
+        "language": "ar",
+        "tvTypes": [
+            "TvSeries",
+            "Movie"
+        ],
+        "iconUrl": null,
+        "repositoryUrl": "https://github.com/rhoulou/TotalArab",
+        "fileSize": 26946,
+        "fileHash": "sha256-f684a58ba08021e2573b7fc73bf65edb6dad67a9aad492b6e021e177b6c9a1e7"
+    },
+    {
+        "name": "AnimeWitcher",
+        "internalName": "AnimewitcherProvider",
+        "url": "https://raw.githubusercontent.com/rhoulou/TotalArab/main/AnimewitcherProvider_1.cs3",
+        "status": 1,
+        "version": 1,
+        "apiVersion": 1,
+        "authors": [
+            "rhoulou"
+        ],
+        "description": "AnimeWitcher (Arabic). Ported from Abodabodd/re-3arabi (https://github.com/Abodabodd/re-3arabi) and maintained in TotalArab.",
+        "language": "ar",
+        "tvTypes": [
+            "Anime",
+            "AnimeMovie"
+        ],
+        "iconUrl": "https://raw.githubusercontent.com/Abodabodd/Oldarabrepo/refs/heads/main/img/anime_witcher_round_icon.png",
+        "repositoryUrl": "https://github.com/rhoulou/TotalArab",
+        "fileSize": 34019,
+        "fileHash": "sha256-dbae0c1db5787708ca906a8c16f2df04e239fbd96e6c05e74349c37a07ba931b"
+    },
+    {
+        "name": "\u0627\u064a\u062c\u064a \u062f\u064a\u062f",
+        "internalName": "EgydeadProvider",
+        "url": "https://raw.githubusercontent.com/rhoulou/TotalArab/main/EgydeadProvider_1.cs3",
+        "status": 1,
+        "version": 1,
+        "apiVersion": 1,
+        "authors": [
+            "rhoulou"
+        ],
+        "description": "\u0627\u064a\u062c\u064a \u062f\u064a\u062f (Arabic). Ported from Abodabodd/re-3arabi (https://github.com/Abodabodd/re-3arabi) and maintained in TotalArab.",
+        "language": "ar",
+        "tvTypes": [
+            "Movie",
+            "TvSeries"
+        ],
+        "iconUrl": null,
+        "repositoryUrl": "https://github.com/rhoulou/TotalArab",
+        "fileSize": 52902,
+        "fileHash": "sha256-29b49a47291834dce3343a16a643d5760905e077bab9e4b3758dd6d02723c219"
+    },
+    {
+        "name": "MyCima",
+        "internalName": "MyCimaProvider",
+        "url": "https://raw.githubusercontent.com/rhoulou/TotalArab/main/MyCimaProvider_1.cs3",
+        "status": 1,
+        "version": 1,
+        "apiVersion": 1,
+        "authors": [
+            "rhoulou"
+        ],
+        "description": "MyCima (Arabic). Ported from Abodabodd/re-3arabi (https://github.com/Abodabodd/re-3arabi) and maintained in TotalArab.",
+        "language": "ar",
+        "tvTypes": [
+            "TvSeries",
+            "Movie",
+            "Anime",
+            "AsianDrama"
+        ],
+        "iconUrl": null,
+        "repositoryUrl": "https://github.com/rhoulou/TotalArab",
+        "fileSize": 47573,
+        "fileHash": "sha256-576b31638b41a3df272b330041fd75109965c03fb288b2e1b75742318d9ea2df"
+    },
+    {
+        "name": "Asia2TV 2",
+        "internalName": "Asia2tv2Provider",
+        "url": "https://raw.githubusercontent.com/rhoulou/TotalArab/main/Asia2tv2Provider_1.cs3",
+        "status": 1,
+        "version": 1,
+        "apiVersion": 1,
+        "authors": [
+            "rhoulou"
+        ],
+        "description": "Asia2TV 2 (Arabic). Ported from Abodabodd/re-3arabi (https://github.com/Abodabodd/re-3arabi) and maintained in TotalArab.",
+        "language": "ar",
+        "tvTypes": [
+            "AsianDrama",
+            "TvSeries",
+            "Movie"
+        ],
+        "iconUrl": null,
+        "repositoryUrl": "https://github.com/rhoulou/TotalArab",
+        "fileSize": 14752,
+        "fileHash": "sha256-6d4cd7fe3c5f6047651ef6715aaccbe7e6e140dbeb15eb70b00bb66189d9c7db"
+    },
+    {
+        "name": "\u0642\u0635\u0629 \u0639\u0634\u0642",
+        "internalName": "ThreeiskProvider",
+        "url": "https://raw.githubusercontent.com/rhoulou/TotalArab/main/ThreeiskProvider_1.cs3",
+        "status": 1,
+        "version": 1,
+        "apiVersion": 1,
+        "authors": [
+            "rhoulou"
+        ],
+        "description": "\u0642\u0635\u0629 \u0639\u0634\u0642 (Arabic). Ported from Abodabodd/re-3arabi (https://github.com/Abodabodd/re-3arabi) and maintained in TotalArab.",
+        "language": "ar",
+        "tvTypes": [
+            "TvSeries",
+            "Movie"
+        ],
+        "iconUrl": null,
+        "repositoryUrl": "https://github.com/rhoulou/TotalArab",
+        "fileSize": 29814,
+        "fileHash": "sha256-c9a64700db10dccbfdf384d9a5fcc739a68faa10bb8990982a867b3aad882616"
+    },
+    {
+        "name": "\u0639\u0634\u0642 2",
+        "internalName": "EseekProvider",
+        "url": "https://raw.githubusercontent.com/rhoulou/TotalArab/main/EseekProvider_1.cs3",
+        "status": 1,
+        "version": 1,
+        "apiVersion": 1,
+        "authors": [
+            "rhoulou"
+        ],
+        "description": "\u0639\u0634\u0642 2 (Arabic). Ported from Abodabodd/re-3arabi (https://github.com/Abodabodd/re-3arabi) and maintained in TotalArab.",
+        "language": "ar",
+        "tvTypes": [
+            "TvSeries",
+            "Movie"
+        ],
+        "iconUrl": null,
+        "repositoryUrl": "https://github.com/rhoulou/TotalArab",
+        "fileSize": 37403,
+        "fileHash": "sha256-34e5aa5c6733320ec6a5b2e7c35ce655891ebb76fe8927066c677a15327c09d4"
+    },
+    {
+        "name": "\u0642\u0631\u0645\u0632\u064a",
+        "internalName": "KrmzyProvider",
+        "url": "https://raw.githubusercontent.com/rhoulou/TotalArab/main/KrmzyProvider_1.cs3",
+        "status": 1,
+        "version": 1,
+        "apiVersion": 1,
+        "authors": [
+            "rhoulou"
+        ],
+        "description": "\u0642\u0631\u0645\u0632\u064a (Arabic). Ported from Abodabodd/re-3arabi (https://github.com/Abodabodd/re-3arabi) and maintained in TotalArab.",
+        "language": "ar",
+        "tvTypes": [
+            "TvSeries"
+        ],
+        "iconUrl": null,
+        "repositoryUrl": "https://github.com/rhoulou/TotalArab",
+        "fileSize": 34319,
+        "fileHash": "sha256-05a4f79535346f8ab7ec036467944d04c13851dbb315aa7b4ba538ab48f88f6e"
+    },
+    {
+        "name": "Animerco",
+        "internalName": "AnimercoProvider",
+        "url": "https://raw.githubusercontent.com/rhoulou/TotalArab/main/AnimercoProvider_1.cs3",
+        "status": 1,
+        "version": 1,
+        "apiVersion": 1,
+        "authors": [
+            "rhoulou"
+        ],
+        "description": "Animerco (Arabic). Ported from Abodabodd/re-3arabi (https://github.com/Abodabodd/re-3arabi) and maintained in TotalArab.",
+        "language": "ar",
+        "tvTypes": [
+            "Anime",
+            "AnimeMovie",
+            "OVA"
+        ],
+        "iconUrl": "https://raw.githubusercontent.com/Abodabodd/Oldarabrepo/refs/heads/main/img/file_0000000042f861f49090744dc097ee2f.png",
+        "repositoryUrl": "https://github.com/rhoulou/TotalArab",
+        "fileSize": 92079,
+        "fileHash": "sha256-deb991600aaa60344307507ac3481c54a0419dd84138990eaea801dbe2693eb8"
+    },
+    {
+        "name": "WitAnime",
+        "internalName": "WitanimeProvider",
+        "url": "https://raw.githubusercontent.com/rhoulou/TotalArab/main/WitanimeProvider_1.cs3",
+        "status": 1,
+        "version": 1,
+        "apiVersion": 1,
+        "authors": [
+            "rhoulou"
+        ],
+        "description": "WitAnime (Arabic). Ported from Abodabodd/re-3arabi (https://github.com/Abodabodd/re-3arabi) and maintained in TotalArab.",
+        "language": "ar",
+        "tvTypes": [
+            "Anime",
+            "AnimeMovie"
+        ],
+        "iconUrl": null,
+        "repositoryUrl": "https://github.com/rhoulou/TotalArab",
+        "fileSize": 49193,
+        "fileHash": "sha256-7e156c71aacc38de3acac77a66981c17aec905fbe9c9903ce67e3b62dd67acf4"
+    },
+    {
+        "name": "Shahid4u",
+        "internalName": "Shahid4uProvider",
+        "url": "https://raw.githubusercontent.com/rhoulou/TotalArab/main/Shahid4uProvider_1.cs3",
+        "status": 1,
+        "version": 1,
+        "apiVersion": 1,
+        "authors": [
+            "rhoulou"
+        ],
+        "description": "Shahid4u (Arabic). Ported from Abodabodd/re-3arabi (https://github.com/Abodabodd/re-3arabi) and maintained in TotalArab.",
+        "language": "ar",
+        "tvTypes": [
+            "Movie",
+            "TvSeries"
+        ],
+        "iconUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS3Ig85ZYdRsjDw--peeI2RsBqOWmvnmvKKsT4UONdPMQ&s=10",
+        "repositoryUrl": "https://github.com/rhoulou/TotalArab",
+        "fileSize": 31753,
+        "fileHash": "sha256-26b15a6543c62b5e2c862328b3cb0dcf8db3ca25822a367376024c28d1b6b616"
+    },
+    {
+        "name": "CimaClub",
+        "internalName": "CimaClubProvider",
+        "url": "https://raw.githubusercontent.com/rhoulou/TotalArab/main/CimaClubProvider_1.cs3",
+        "status": 1,
+        "version": 1,
+        "apiVersion": 1,
+        "authors": [
+            "rhoulou"
+        ],
+        "description": "CimaClub (Arabic). Ported from Abodabodd/re-3arabi (https://github.com/Abodabodd/re-3arabi) and maintained in TotalArab.",
+        "language": "ar",
+        "tvTypes": [
+            "TvSeries",
+            "Movie"
+        ],
+        "iconUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQX1z-0NYyzyEiFs4q7X9c8SSBR6kJtVl7f7A&s",
+        "repositoryUrl": "https://github.com/rhoulou/TotalArab",
+        "fileSize": 17629,
+        "fileHash": "sha256-38c3240e360b780643e4cee576eecc6d14a9e11b0cec845c563c1acfd576e821"
+    },
+    {
+        "name": "FASELHD",
+        "internalName": "FaselhdProvider",
+        "url": "https://raw.githubusercontent.com/rhoulou/TotalArab/main/FaselhdProvider_1.cs3",
+        "status": 1,
+        "version": 1,
+        "apiVersion": 1,
+        "authors": [
+            "rhoulou"
+        ],
+        "description": "FASELHD (Arabic). Ported from Abodabodd/re-3arabi (https://github.com/Abodabodd/re-3arabi) and maintained in TotalArab.",
+        "language": "ar",
+        "tvTypes": [
+            "Movie",
+            "TvSeries",
+            "Anime"
+        ],
+        "iconUrl": null,
+        "repositoryUrl": "https://github.com/rhoulou/TotalArab",
+        "fileSize": 55267,
+        "fileHash": "sha256-0d00992bbb5072e4d2217672dd9a986354f7ef4ab855c55eb91ddddf9e2a506c"
+    },
+    {
+        "name": "CimaWbas",
+        "internalName": "CimawbasProvider",
+        "url": "https://raw.githubusercontent.com/rhoulou/TotalArab/main/CimawbasProvider_1.cs3",
+        "status": 1,
+        "version": 1,
+        "apiVersion": 1,
+        "authors": [
+            "rhoulou"
+        ],
+        "description": "CimaWbas (Arabic). Ported from Abodabodd/re-3arabi (https://github.com/Abodabodd/re-3arabi) and maintained in TotalArab.",
+        "language": "ar",
+        "tvTypes": [
+            "Movie",
+            "TvSeries",
+            "AsianDrama",
+            "Anime"
+        ],
+        "iconUrl": null,
+        "repositoryUrl": "https://github.com/rhoulou/TotalArab",
+        "fileSize": 13512,
+        "fileHash": "sha256-af1a27005548ab4993a6295f4aca1c96a40f76753c29482a38e9aa293e180b5e"
+    },
+    {
+        "name": "Arabseed",
+        "internalName": "ArabseedProvider",
+        "url": "https://raw.githubusercontent.com/rhoulou/TotalArab/main/ArabseedProvider_1.cs3",
+        "status": 1,
+        "version": 1,
+        "apiVersion": 1,
+        "authors": [
+            "rhoulou"
+        ],
+        "description": "Arabseed (Arabic). Ported from Abodabodd/re-3arabi (https://github.com/Abodabodd/re-3arabi) and maintained in TotalArab.",
+        "language": "ar",
+        "tvTypes": [
+            "Movie",
+            "TvSeries",
+            "Anime"
+        ],
+        "iconUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRjXYRCgXdHTs-hdcOKs1ooTW5plsBI7CWbsA&s",
+        "repositoryUrl": "https://github.com/rhoulou/TotalArab",
+        "fileSize": 44042,
+        "fileHash": "sha256-ca5d70fb7439ce7c11553868aec8809265463c895f724aad44c82be99f760762"
+    },
+    {
+        "name": "Shabakaty Cinemana",
+        "internalName": "CinemanaProvider",
+        "url": "https://raw.githubusercontent.com/rhoulou/TotalArab/main/CinemanaProvider_1.cs3",
+        "status": 1,
+        "version": 1,
+        "apiVersion": 1,
+        "authors": [
+            "rhoulou"
+        ],
+        "description": "Shabakaty Cinemana (Arabic). Ported from Abodabodd/re-3arabi (https://github.com/Abodabodd/re-3arabi) and maintained in TotalArab.",
+        "language": "ar",
+        "tvTypes": [
+            "Movie",
+            "TvSeries"
+        ],
+        "iconUrl": null,
+        "repositoryUrl": "https://github.com/rhoulou/TotalArab",
+        "fileSize": 47793,
+        "fileHash": "sha256-6ceedc015996c0102de494146d81ffe85f73c1f1468fee07dba8c96e00c598fa"
     }
 ]

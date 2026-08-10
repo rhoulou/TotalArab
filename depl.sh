@@ -5,11 +5,13 @@ REPO_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 cd "$REPO_ROOT"
 
 ANDROID_HOME="${ANDROID_HOME:-/opt/android-sdk}"
-GRADLE="${GRADLE:-/tmp/opencode/gradle-8.12/bin/gradle}"
+GRADLE="${GRADLE:-$HOME/.gradle/wrapper/dists/gradle-8.12-bin/cetblhg4pflnnks72fxwobvgv/gradle-8.12/bin/gradle}"
 GH_REPO="rhoulou/TotalArab"
 SITE_URL="https://raw.githubusercontent.com/rhoulou/TotalArab/main"
-PROVIDERS=(AkwamProvider WeCimaProvider)
 NEW_VERSION="${1:-}"
+
+# Every plugin in plugins.json is a gradle module named after its internalName.
+PROVIDERS=($(python3 -c "import json; print(' '.join(p['internalName'] for p in json.load(open('plugins.json'))))"))
 
 tasks=()
 for p in "${PROVIDERS[@]}"; do
@@ -36,10 +38,10 @@ fi
 
 EXPECTED="$NEW_VERSION"
 if [ -z "$EXPECTED" ]; then
-    EXPECTED=$(python3 -c "import json; print([p['version'] for p in json.load(open('plugins.json')) if p['internalName']=='AkwamProvider'][0])")
+    EXPECTED=$(python3 -c "import json; print(json.load(open('plugins.json'))[0]['version'])")
 fi
 
-echo "== Building ${PROVIDERS[*]} =="
+echo "== Building ${#PROVIDERS[@]} plugins =="
 export ANDROID_HOME
 "$GRADLE" --no-daemon "${tasks[@]}"
 
@@ -49,7 +51,8 @@ import hashlib, json
 with open("plugins.json") as f:
     data = json.load(f)
 for p in data:
-    path = p["internalName"] + ".cs3"
+    name = p["internalName"]
+    path = name + ".cs3"
     try:
         blob = open(path, "rb").read()
         p["fileSize"] = len(blob)
@@ -57,7 +60,7 @@ for p in data:
     except FileNotFoundError:
         pass
     # Version the cs3 url so CDNs / app caches can never serve stale bytes
-    p["url"] = p["url"].rsplit("/", 1)[0] + f"/{p['internalName']}_{p['version']}.cs3"
+    p["url"] = p["url"].rsplit("/", 1)[0] + f"/{name}_{p['version']}.cs3"
 with open("plugins.json", "w") as f:
     json.dump(data, f, indent=4)
     f.write("\n")
@@ -78,12 +81,12 @@ stage_artifacts
 echo "== Verifying manifests =="
 for p in "${PROVIDERS[@]}"; do
     got=$(unzip -p "$p.cs3" manifest.json | python3 -c "import json,sys; print(json.load(sys.stdin)['version'])")
-    echo "$p manifest version: $got"
     if [ "$got" != "$EXPECTED" ]; then
         echo "ERROR: $p manifest version $got != expected $EXPECTED" >&2
         exit 1
     fi
 done
+echo "All ${#PROVIDERS[@]} manifests at v$EXPECTED"
 
 push() {
     for attempt in $(seq 1 5); do
@@ -116,7 +119,7 @@ commit() {
     git add -A
     if ! git diff --cached --quiet; then
         if [ -n "$NEW_VERSION" ]; then
-            git commit -m "v$NEW_VERSION: Akwam + WeCima providers"
+            git commit -m "v$NEW_VERSION: TotalArab plugins"
         else
             git commit -m "rebuild plugins"
         fi
@@ -132,32 +135,29 @@ verify_served() {
 import json, os, urllib.request, hashlib
 base = os.environ["SITE_URL"]
 expected = int(os.environ["EXPECTED"])
-names = ('AkwamProvider', 'WeCimaProvider')
 pj = json.load(urllib.request.urlopen(base + "/plugins.json", timeout=30))
 for p in pj:
-    if p['internalName'] not in names:
-        continue
     blob = urllib.request.urlopen(p['url'], timeout=30).read()
     h = "sha256-" + hashlib.sha256(blob).hexdigest()
     if p['version'] != expected or h != p['fileHash'] or len(blob) != p['fileSize']:
         print(f"ERROR: {p['internalName']} served bytes inconsistent")
         raise SystemExit(1)
-print("Served cs3 bytes match plugins.json hashes for all providers")
+print(f"Served cs3 bytes match plugins.json hashes for all {len(pj)} providers")
 PY
 }
 
 echo "== Waiting for raw.githubusercontent.com to serve version $EXPECTED =="
 # raw.githubusercontent.com serves git main directly - the new version is
 # visible as soon as the push propagates (seconds, no deploy pipeline).
-for _ in $(seq 1 12); do
+for _ in $(seq 1 20); do
     sleep 10
     if curl -sk --max-time 20 "$SITE_URL/plugins.json" | \
        python3 -c "import json,sys
 try:
     v=$EXPECTED
     d=json.load(sys.stdin)
-    ok=[p for p in d if p['internalName'] in ('AkwamProvider', 'WeCimaProvider') and p['version']==v]
-    sys.exit(0 if len(ok)==2 else 1)
+    ok=len([p for p in d if p['version']==v])
+    sys.exit(0 if ok==len(d) else 1)
 except Exception:
     sys.exit(1)"; then
         echo "Live on raw: all providers at v$EXPECTED"

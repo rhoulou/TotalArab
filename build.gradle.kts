@@ -73,7 +73,13 @@ subprojects {
         implementation(kotlin("stdlib"))
         implementation("com.github.Blatzar:NiceHttp:0.4.11")
         implementation("com.fasterxml.jackson.module:jackson-module-kotlin:2.13.1")
+        implementation("com.fasterxml.jackson.core:jackson-databind:2.13.1")
         implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.4")
+        implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.8.0")
+        implementation("org.jsoup:jsoup:1.19.1")
+        implementation("com.google.code.gson:gson:2.11.0")
+        implementation("com.squareup.okhttp3:okhttp:5.2.1")
+        implementation("androidx.preference:preference-ktx:1.2.1")
     }
 }
 
