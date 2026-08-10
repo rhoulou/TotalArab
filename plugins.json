@@ -46,9 +46,9 @@
     {
         "name": "TVgarden(Famelack)",
         "internalName": "TVgardenProvider",
-        "url": "https://raw.githubusercontent.com/rhoulou/TotalArab/main/TVgardenProvider_1.cs3",
+        "url": "https://raw.githubusercontent.com/rhoulou/TotalArab/main/TVgardenProvider_11.cs3",
         "status": 1,
-        "version": 1,
+        "version": 11,
         "apiVersion": 1,
         "authors": [
             "rhoulou"
@@ -66,9 +66,9 @@
     {
         "name": "CimaLight",
         "internalName": "CimalightProvider",
-        "url": "https://raw.githubusercontent.com/rhoulou/TotalArab/main/CimalightProvider_1.cs3",
+        "url": "https://raw.githubusercontent.com/rhoulou/TotalArab/main/CimalightProvider_11.cs3",
         "status": 1,
-        "version": 1,
+        "version": 11,
         "apiVersion": 1,
         "authors": [
             "rhoulou"
@@ -87,9 +87,9 @@
     {
         "name": "Anime4Up",
         "internalName": "Anime4upProvider",
-        "url": "https://raw.githubusercontent.com/rhoulou/TotalArab/main/Anime4upProvider_1.cs3",
+        "url": "https://raw.githubusercontent.com/rhoulou/TotalArab/main/Anime4upProvider_11.cs3",
         "status": 1,
-        "version": 1,
+        "version": 11,
         "apiVersion": 1,
         "authors": [
             "rhoulou"
@@ -109,9 +109,9 @@
     {
         "name": "Dima Toon",
         "internalName": "DimaToonProvider",
-        "url": "https://raw.githubusercontent.com/rhoulou/TotalArab/main/DimaToonProvider_1.cs3",
+        "url": "https://raw.githubusercontent.com/rhoulou/TotalArab/main/DimaToonProvider_11.cs3",
         "status": 1,
-        "version": 1,
+        "version": 11,
         "apiVersion": 1,
         "authors": [
             "rhoulou"
@@ -129,9 +129,9 @@
     {
         "name": "TukTukcima",
         "internalName": "TuktukcimaProvider",
-        "url": "https://raw.githubusercontent.com/rhoulou/TotalArab/main/TuktukcimaProvider_1.cs3",
+        "url": "https://raw.githubusercontent.com/rhoulou/TotalArab/main/TuktukcimaProvider_11.cs3",
         "status": 1,
-        "version": 1,
+        "version": 11,
         "apiVersion": 1,
         "authors": [
             "rhoulou"
@@ -151,9 +151,9 @@
     {
         "name": "Syria Live",
         "internalName": "SyrialiveProvider",
-        "url": "https://raw.githubusercontent.com/rhoulou/TotalArab/main/SyrialiveProvider_1.cs3",
+        "url": "https://raw.githubusercontent.com/rhoulou/TotalArab/main/SyrialiveProvider_11.cs3",
         "status": 1,
-        "version": 1,
+        "version": 11,
         "apiVersion": 1,
         "authors": [
             "rhoulou"
@@ -172,9 +172,9 @@
     {
         "name": "Viu",
         "internalName": "ViuProvider",
-        "url": "https://raw.githubusercontent.com/rhoulou/TotalArab/main/ViuProvider_1.cs3",
+        "url": "https://raw.githubusercontent.com/rhoulou/TotalArab/main/ViuProvider_11.cs3",
         "status": 1,
-        "version": 1,
+        "version": 11,
         "apiVersion": 1,
         "authors": [
             "rhoulou"
@@ -194,9 +194,9 @@
     {
         "name": "Tuni flix",
         "internalName": "TuniflixProvider",
-        "url": "https://raw.githubusercontent.com/rhoulou/TotalArab/main/TuniflixProvider_1.cs3",
+        "url": "https://raw.githubusercontent.com/rhoulou/TotalArab/main/TuniflixProvider_11.cs3",
         "status": 1,
-        "version": 1,
+        "version": 11,
         "apiVersion": 1,
         "authors": [
             "rhoulou"
@@ -215,9 +215,9 @@
     {
         "name": "CimaTn",
         "internalName": "CimatnProvider",
-        "url": "https://raw.githubusercontent.com/rhoulou/TotalArab/main/CimatnProvider_1.cs3",
+        "url": "https://raw.githubusercontent.com/rhoulou/TotalArab/main/CimatnProvider_11.cs3",
         "status": 1,
-        "version": 1,
+        "version": 11,
         "apiVersion": 1,
         "authors": [
             "rhoulou"
@@ -236,9 +236,9 @@
     {
         "name": "Cee",
         "internalName": "CeeProvider",
-        "url": "https://raw.githubusercontent.com/rhoulou/TotalArab/main/CeeProvider_1.cs3",
+        "url": "https://raw.githubusercontent.com/rhoulou/TotalArab/main/CeeProvider_11.cs3",
         "status": 1,
-        "version": 1,
+        "version": 11,
         "apiVersion": 1,
         "authors": [
             "rhoulou"
@@ -257,9 +257,9 @@
     {
         "name": "Anime3rb",
         "internalName": "Anime3rbProvider",
-        "url": "https://raw.githubusercontent.com/rhoulou/TotalArab/main/Anime3rbProvider_1.cs3",
+        "url": "https://raw.githubusercontent.com/rhoulou/TotalArab/main/Anime3rbProvider_11.cs3",
         "status": 1,
-        "version": 1,
+        "version": 11,
         "apiVersion": 1,
         "authors": [
             "rhoulou"
@@ -278,9 +278,9 @@
     {
         "name": "YouTube",
         "internalName": "YoutubeProvider",
-        "url": "https://raw.githubusercontent.com/rhoulou/TotalArab/main/YoutubeProvider_1.cs3",
+        "url": "https://raw.githubusercontent.com/rhoulou/TotalArab/main/YoutubeProvider_11.cs3",
         "status": 1,
-        "version": 1,
+        "version": 11,
         "apiVersion": 1,
         "authors": [
             "rhoulou"
@@ -299,9 +299,9 @@
     {
         "name": "LodyNet",
         "internalName": "LodynetProvider",
-        "url": "https://raw.githubusercontent.com/rhoulou/TotalArab/main/LodynetProvider_1.cs3",
+        "url": "https://raw.githubusercontent.com/rhoulou/TotalArab/main/LodynetProvider_11.cs3",
         "status": 1,
-        "version": 1,
+        "version": 11,
         "apiVersion": 1,
         "authors": [
             "rhoulou"
@@ -321,9 +321,9 @@
     {
         "name": "Top Cinema",
         "internalName": "TopcinemaProvider",
-        "url": "https://raw.githubusercontent.com/rhoulou/TotalArab/main/TopcinemaProvider_1.cs3",
+        "url": "https://raw.githubusercontent.com/rhoulou/TotalArab/main/TopcinemaProvider_11.cs3",
         "status": 1,
-        "version": 1,
+        "version": 11,
         "apiVersion": 1,
         "authors": [
             "rhoulou"
@@ -342,9 +342,9 @@
     {
         "name": "FullMatchShows",
         "internalName": "ReplaymatchProvider",
-        "url": "https://raw.githubusercontent.com/rhoulou/TotalArab/main/ReplaymatchProvider_1.cs3",
+        "url": "https://raw.githubusercontent.com/rhoulou/TotalArab/main/ReplaymatchProvider_11.cs3",
         "status": 1,
-        "version": 1,
+        "version": 11,
         "apiVersion": 1,
         "authors": [
             "rhoulou"
@@ -362,9 +362,9 @@
     {
         "name": "bristege",
         "internalName": "BristegeProvider",
-        "url": "https://raw.githubusercontent.com/rhoulou/TotalArab/main/BristegeProvider_1.cs3",
+        "url": "https://raw.githubusercontent.com/rhoulou/TotalArab/main/BristegeProvider_11.cs3",
         "status": 1,
-        "version": 1,
+        "version": 11,
         "apiVersion": 1,
         "authors": [
             "rhoulou"
@@ -383,9 +383,9 @@
     {
         "name": "AnimeWitcher",
         "internalName": "AnimewitcherProvider",
-        "url": "https://raw.githubusercontent.com/rhoulou/TotalArab/main/AnimewitcherProvider_1.cs3",
+        "url": "https://raw.githubusercontent.com/rhoulou/TotalArab/main/AnimewitcherProvider_11.cs3",
         "status": 1,
-        "version": 1,
+        "version": 11,
         "apiVersion": 1,
         "authors": [
             "rhoulou"
@@ -404,9 +404,9 @@
     {
         "name": "\u0627\u064a\u062c\u064a \u062f\u064a\u062f",
         "internalName": "EgydeadProvider",
-        "url": "https://raw.githubusercontent.com/rhoulou/TotalArab/main/EgydeadProvider_1.cs3",
+        "url": "https://raw.githubusercontent.com/rhoulou/TotalArab/main/EgydeadProvider_11.cs3",
         "status": 1,
-        "version": 1,
+        "version": 11,
         "apiVersion": 1,
         "authors": [
             "rhoulou"
@@ -425,9 +425,9 @@
     {
         "name": "MyCima",
         "internalName": "MyCimaProvider",
-        "url": "https://raw.githubusercontent.com/rhoulou/TotalArab/main/MyCimaProvider_1.cs3",
+        "url": "https://raw.githubusercontent.com/rhoulou/TotalArab/main/MyCimaProvider_11.cs3",
         "status": 1,
-        "version": 1,
+        "version": 11,
         "apiVersion": 1,
         "authors": [
             "rhoulou"
@@ -448,9 +448,9 @@
     {
         "name": "Asia2TV 2",
         "internalName": "Asia2tv2Provider",
-        "url": "https://raw.githubusercontent.com/rhoulou/TotalArab/main/Asia2tv2Provider_1.cs3",
+        "url": "https://raw.githubusercontent.com/rhoulou/TotalArab/main/Asia2tv2Provider_11.cs3",
         "status": 1,
-        "version": 1,
+        "version": 11,
         "apiVersion": 1,
         "authors": [
             "rhoulou"
@@ -470,9 +470,9 @@
     {
         "name": "\u0642\u0635\u0629 \u0639\u0634\u0642",
         "internalName": "ThreeiskProvider",
-        "url": "https://raw.githubusercontent.com/rhoulou/TotalArab/main/ThreeiskProvider_1.cs3",
+        "url": "https://raw.githubusercontent.com/rhoulou/TotalArab/main/ThreeiskProvider_11.cs3",
         "status": 1,
-        "version": 1,
+        "version": 11,
         "apiVersion": 1,
         "authors": [
             "rhoulou"
@@ -491,9 +491,9 @@
     {
         "name": "\u0639\u0634\u0642 2",
         "internalName": "EseekProvider",
-        "url": "https://raw.githubusercontent.com/rhoulou/TotalArab/main/EseekProvider_1.cs3",
+        "url": "https://raw.githubusercontent.com/rhoulou/TotalArab/main/EseekProvider_11.cs3",
         "status": 1,
-        "version": 1,
+        "version": 11,
         "apiVersion": 1,
         "authors": [
             "rhoulou"
@@ -512,9 +512,9 @@
     {
         "name": "\u0642\u0631\u0645\u0632\u064a",
         "internalName": "KrmzyProvider",
-        "url": "https://raw.githubusercontent.com/rhoulou/TotalArab/main/KrmzyProvider_1.cs3",
+        "url": "https://raw.githubusercontent.com/rhoulou/TotalArab/main/KrmzyProvider_11.cs3",
         "status": 1,
-        "version": 1,
+        "version": 11,
         "apiVersion": 1,
         "authors": [
             "rhoulou"
@@ -532,9 +532,9 @@
     {
         "name": "Animerco",
         "internalName": "AnimercoProvider",
-        "url": "https://raw.githubusercontent.com/rhoulou/TotalArab/main/AnimercoProvider_1.cs3",
+        "url": "https://raw.githubusercontent.com/rhoulou/TotalArab/main/AnimercoProvider_11.cs3",
         "status": 1,
-        "version": 1,
+        "version": 11,
         "apiVersion": 1,
         "authors": [
             "rhoulou"
@@ -554,9 +554,9 @@
     {
         "name": "WitAnime",
         "internalName": "WitanimeProvider",
-        "url": "https://raw.githubusercontent.com/rhoulou/TotalArab/main/WitanimeProvider_1.cs3",
+        "url": "https://raw.githubusercontent.com/rhoulou/TotalArab/main/WitanimeProvider_11.cs3",
         "status": 1,
-        "version": 1,
+        "version": 11,
         "apiVersion": 1,
         "authors": [
             "rhoulou"
@@ -575,9 +575,9 @@
     {
         "name": "Shahid4u",
         "internalName": "Shahid4uProvider",
-        "url": "https://raw.githubusercontent.com/rhoulou/TotalArab/main/Shahid4uProvider_1.cs3",
+        "url": "https://raw.githubusercontent.com/rhoulou/TotalArab/main/Shahid4uProvider_11.cs3",
         "status": 1,
-        "version": 1,
+        "version": 11,
         "apiVersion": 1,
         "authors": [
             "rhoulou"
@@ -596,9 +596,9 @@
     {
         "name": "CimaClub",
         "internalName": "CimaClubProvider",
-        "url": "https://raw.githubusercontent.com/rhoulou/TotalArab/main/CimaClubProvider_1.cs3",
+        "url": "https://raw.githubusercontent.com/rhoulou/TotalArab/main/CimaClubProvider_11.cs3",
         "status": 1,
-        "version": 1,
+        "version": 11,
         "apiVersion": 1,
         "authors": [
             "rhoulou"
@@ -617,9 +617,9 @@
     {
         "name": "FASELHD",
         "internalName": "FaselhdProvider",
-        "url": "https://raw.githubusercontent.com/rhoulou/TotalArab/main/FaselhdProvider_1.cs3",
+        "url": "https://raw.githubusercontent.com/rhoulou/TotalArab/main/FaselhdProvider_11.cs3",
         "status": 1,
-        "version": 1,
+        "version": 11,
         "apiVersion": 1,
         "authors": [
             "rhoulou"
@@ -639,9 +639,9 @@
     {
         "name": "CimaWbas",
         "internalName": "CimawbasProvider",
-        "url": "https://raw.githubusercontent.com/rhoulou/TotalArab/main/CimawbasProvider_1.cs3",
+        "url": "https://raw.githubusercontent.com/rhoulou/TotalArab/main/CimawbasProvider_11.cs3",
         "status": 1,
-        "version": 1,
+        "version": 11,
         "apiVersion": 1,
         "authors": [
             "rhoulou"
@@ -662,9 +662,9 @@
     {
         "name": "Arabseed",
         "internalName": "ArabseedProvider",
-        "url": "https://raw.githubusercontent.com/rhoulou/TotalArab/main/ArabseedProvider_1.cs3",
+        "url": "https://raw.githubusercontent.com/rhoulou/TotalArab/main/ArabseedProvider_11.cs3",
         "status": 1,
-        "version": 1,
+        "version": 11,
         "apiVersion": 1,
         "authors": [
             "rhoulou"
@@ -684,9 +684,9 @@
     {
         "name": "Shabakaty Cinemana",
         "internalName": "CinemanaProvider",
-        "url": "https://raw.githubusercontent.com/rhoulou/TotalArab/main/CinemanaProvider_1.cs3",
+        "url": "https://raw.githubusercontent.com/rhoulou/TotalArab/main/CinemanaProvider_11.cs3",
         "status": 1,
-        "version": 1,
+        "version": 11,
         "apiVersion": 1,
         "authors": [
             "rhoulou"
