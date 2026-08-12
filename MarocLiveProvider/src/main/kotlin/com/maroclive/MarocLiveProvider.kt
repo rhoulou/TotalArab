@@ -1,6 +1,6 @@
 package com.maroclive
 
-import android.util.Log
+import com.lagradost.api.Log
 import com.lagradost.cloudstream3.HomePageList
 import com.lagradost.cloudstream3.HomePageResponse
 import com.lagradost.cloudstream3.LiveSearchResponse
@@ -25,6 +25,8 @@ class MarocLiveProvider : MainAPI() {
     override val hasMainPage = true
     override var lang = "ar"
     override val supportedTypes = setOf(TvType.Live)
+
+    private const val DIAG_ALL_URL = "maroclive://diagnostics/all"
 
     data class Channel(
         val name: String,
@@ -188,6 +190,20 @@ class MarocLiveProvider : MainAPI() {
 
     override suspend fun getMainPage(page: Int, request: MainPageRequest): HomePageResponse {
         val items = mutableListOf<HomePageList>()
+        if (MAX_PLAYBACK_DEBUG) {
+            items.add(
+                HomePageList(
+                    "الاختبار (Diagnostics)",
+                    listOf(
+                        newLiveSearchResponse("Full diagnostics: all channels", DIAG_ALL_URL, TvType.Live) {
+                            posterUrl = ""
+                            lang = "ar"
+                        }
+                    ),
+                    isHorizontalImages = true
+                )
+            )
+        }
         for (category in categories) {
             val group = channels.filter { it.category == category }.map { it.toLiveSearch() }
             if (group.isNotEmpty()) {
@@ -197,11 +213,38 @@ class MarocLiveProvider : MainAPI() {
         return newHomePageResponse(items)
     }
 
-    override suspend fun search(query: String): List<SearchResponse> =
-        channels.filter { it.name.contains(query, ignoreCase = true) }.map { it.toLiveSearch() }
+    override suspend fun search(query: String): List<SearchResponse> {
+        val results = channels.filter { it.name.contains(query, ignoreCase = true) }
+        if (MAX_PLAYBACK_DEBUG) {
+            Diag.section("PROVIDER/SEARCH DIAGNOSTICS")
+            Diag.kv("provider", name)
+            Diag.kv("search query", query)
+            Diag.kv("search url", "N/A - static channel list (no network search)")
+            Diag.kv("HTTP status", "N/A - static channel list")
+            Diag.kv("response headers", "N/A - static channel list")
+            Diag.kv("result count", results.size.toString())
+            results.forEachIndexed { i, ch ->
+                Diag.d("result[$i]: title=\"${ch.name}\" type=${Diag.classifyUrl(ch.url)} url=${ch.url}")
+            }
+        }
+        return results.map { it.toLiveSearch() }
+    }
 
     override suspend fun load(url: String): LoadResponse {
+        if (url == DIAG_ALL_URL) {
+            if (MAX_PLAYBACK_DEBUG) Diag.d("load: diagnostics entry opened")
+            return newLiveStreamLoadResponse(
+                name = "MarocLive Diagnostics",
+                url = url,
+                dataUrl = url
+            )
+        }
         val channel = channels.firstOrNull { it.url == url }
+        if (MAX_PLAYBACK_DEBUG) {
+            Diag.section("LOAD DIAGNOSTICS")
+            Diag.kv("load url", url)
+            Diag.kv("channel", channel?.name ?: "UNKNOWN")
+        }
         return newLiveStreamLoadResponse(
             name = channel?.name ?: "Live Stream",
             url = url,
@@ -217,10 +260,30 @@ class MarocLiveProvider : MainAPI() {
         subtitleCallback: (SubtitleFile) -> Unit,
         callback: (ExtractorLink) -> Unit
     ): Boolean {
-        val channel = channels.firstOrNull { it.url == data } ?: return false
-        Log.d("MarocLive", "loadLinks: ${channel.name} url=$data referer=${channel.referer ?: "none"} headers=${headersFor(channel)}")
+        if (MAX_PLAYBACK_DEBUG && data == DIAG_ALL_URL) return runFullDiagnostics()
+
+        val channel = channels.firstOrNull { it.url == data } ?: run {
+            Diag.e("loadLinks: unknown url $data")
+            return false
+        }
+        val headers = headersFor(channel)
+        val index = channels.indexOfFirst { it.url == data }
+        var diag = Diag.ChannelDiag()
+
+        if (MAX_PLAYBACK_DEBUG) {
+            diag = try {
+                Diag.runChannelDiagnostics(index, chToDiag(channel))
+            } catch (t: Throwable) {
+                Diag.e("loadLinks: diagnostics threw for ${channel.name}", t)
+                Diag.ChannelDiag(classification = "DIAGNOSTICS FAILURE")
+            }
+            Diag.kv("PLAYBACK PATH", "extract -> hand to player")
+        } else {
+            Log.d("MarocLive", "loadLinks: ${channel.name} url=$data referer=${channel.referer ?: "none"} headers=$headers")
+        }
+
         val emitRawFallback: suspend () -> Boolean = {
-            Log.w("MarocLive", "loadLinks: ${channel.name} falling back to raw HLS url: $data")
+            Diag.w("loadLinks: ${channel.name} falling back to raw HLS url: $data")
             callback(
                 newExtractorLink(
                     source = channel.name,
@@ -229,28 +292,96 @@ class MarocLiveProvider : MainAPI() {
                     type = ExtractorLinkType.M3U8
                 ) {
                     referer = channel.referer ?: ""
-                    headers = headersFor(channel)
+                    headers = headers
                     quality = Qualities.Unknown.value
                 }
             )
             true
         }
+
         return try {
             val links = M3u8Helper.generateM3u8(
                 channel.name,
                 data,
                 referer = channel.referer ?: "",
-                headers = headersFor(channel)
+                headers = headers
             )
-            Log.d("MarocLive", "loadLinks: ${channel.name} parsed ${links.size} HLS link(s)")
-            links.forEach { link ->
-                Log.d("MarocLive", "loadLinks: ${channel.name} -> ${link.url}")
-                callback(link)
+            if (MAX_PLAYBACK_DEBUG) {
+                Diag.kv(
+                    "STREAM EXTRACTION",
+                    if (links.isNotEmpty()) "PASS (${links.size} link(s))" else "FAIL (0 links - using raw fallback)"
+                )
+                links.forEachIndexed { i, l ->
+                    Diag.d("link[$i]: url=${l.url} type=${Diag.classifyUrl(l.url)}")
+                }
+            } else {
+                Log.d("MarocLive", "loadLinks: ${channel.name} parsed ${links.size} HLS link(s)")
             }
-            if (links.isNotEmpty()) true else emitRawFallback()
+            links.forEach { callback(it) }
+            if (links.isNotEmpty()) {
+                if (MAX_PLAYBACK_DEBUG) logPlaybackSummary(channel, diag, links.size, null)
+                true
+            } else {
+                if (MAX_PLAYBACK_DEBUG) logPlaybackSummary(channel, diag, 0, null)
+                emitRawFallback()
+            }
         } catch (e: Exception) {
-            Log.e("MarocLive", "loadLinks: ${channel.name} failed to parse HLS: $data", e)
+            Diag.e("loadLinks: ${channel.name} failed to parse HLS: $data", e)
+            if (MAX_PLAYBACK_DEBUG) logPlaybackSummary(channel, diag, 0, e)
             emitRawFallback()
         }
+    }
+
+    private fun chToDiag(channel: Channel) =
+        Diag.DiagChannel(channel.name, channel.url, channel.referer, channel.userAgent)
+
+    private suspend fun runFullDiagnostics(): Boolean {
+        Diag.section("FULL DIAGNOSTICS - ALL CHANNELS")
+        val results = channels.mapIndexed { i, ch ->
+            try {
+                Diag.runChannelDiagnostics(i, chToDiag(ch))
+            } catch (t: Throwable) {
+                Diag.e("runChannelDiagnostics: ${ch.name} threw", t)
+                Diag.ChannelDiag(classification = "DIAGNOSTICS FAILURE")
+            }
+        }
+        Diag.section("PLAYBACK DIAGNOSTIC SUMMARY (ALL CHANNELS)")
+        Diag.kv("channels tested", results.size.toString())
+        Diag.kv("network OK", results.count { it.networkOk }.toString())
+        Diag.kv("HLS parsed", results.count { it.hlsParsed }.toString())
+        Diag.kv(
+            "classifications",
+            results.mapIndexed { i, r -> "[${i + 1}] ${r.classification}" }.joinToString(" | ")
+        )
+        return false
+    }
+
+    private fun logPlaybackSummary(
+        channel: Channel,
+        diag: Diag.ChannelDiag,
+        linksCount: Int,
+        error: Throwable?
+    ) {
+        Diag.section("PLAYBACK DIAGNOSTIC SUMMARY")
+        Diag.kv("Provider", "MarocLive")
+        Diag.kv("Channel", channel.name)
+        Diag.kv("Search", "PASS")
+        Diag.kv("Results", "1")
+        Diag.kv("Stream extraction", if (linksCount > 0) "PASS ($linksCount link(s))" else "FAIL")
+        Diag.kv("URL accessibility", if (diag.networkOk) "PASS (HTTP ${diag.httpStatus})" else "FAIL (HTTP ${diag.httpStatus})")
+        Diag.kv("HLS parsing", if (diag.hlsParsed) "PASS" else "FAIL")
+        Diag.kv("Playlist variants", diag.variants.toString())
+        Diag.kv("First segment", when (diag.firstSegmentOk) {
+            true -> "PASS"
+            false -> "FAIL"
+            else -> "N/A"
+        })
+        Diag.kv("Player preparation", "APP-SIDE (not observable from plugin)")
+        Diag.kv(
+            "Playback start",
+            if (error == null) "links handed to player (APP-SIDE confirmation required)"
+            else "extraction error: ${error.message}"
+        )
+        Diag.kv("Root cause classification", diag.classification)
     }
 }
