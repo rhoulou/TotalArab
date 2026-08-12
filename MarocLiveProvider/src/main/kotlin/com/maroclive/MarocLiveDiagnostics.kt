@@ -167,9 +167,11 @@ object Diag {
         var contentType: String? = null
         var contentLength: Long? = null
         var body: String? = null
+        var result: HttpResult? = null
+        var failure: Throwable? = null
         var hops = 0
         try {
-            while (true) {
+            while (result == null) {
                 client.newCall(newRequest(current, method, headers)).execute().use { resp: Response ->
                     status = resp.code
                     contentType = resp.header("Content-Type")
@@ -187,15 +189,16 @@ object Diag {
                     if (readBody && method == "GET" && status in 200..399) {
                         body = resp.body?.string()
                     }
-                    return@withContext HttpResult(
+                    result = HttpResult(
                         method, url, finalUrl, status, redirects,
                         contentType, contentLength, body, null
                     )
                 }
             }
         } catch (t: Throwable) {
-            HttpResult(method, url, finalUrl, status, redirects, contentType, contentLength, body, t)
+            failure = t
         }
+        HttpResult(method, url, finalUrl, status, redirects, contentType, contentLength, body, failure)
     }
 
     // ---- Network preflight ----

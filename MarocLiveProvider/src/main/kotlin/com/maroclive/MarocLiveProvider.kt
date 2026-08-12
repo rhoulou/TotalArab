@@ -19,14 +19,14 @@ import com.lagradost.cloudstream3.utils.M3u8Helper
 import com.lagradost.cloudstream3.utils.Qualities
 import com.lagradost.cloudstream3.utils.newExtractorLink
 
+private const val DIAG_ALL_URL = "maroclive://diagnostics/all"
+
 class MarocLiveProvider : MainAPI() {
     override var mainUrl = "https://snrtlive.ma/"
     override var name = "MarocLive"
     override val hasMainPage = true
     override var lang = "ar"
     override val supportedTypes = setOf(TvType.Live)
-
-    private const val DIAG_ALL_URL = "maroclive://diagnostics/all"
 
     data class Channel(
         val name: String,
@@ -266,7 +266,7 @@ class MarocLiveProvider : MainAPI() {
             Diag.e("loadLinks: unknown url $data")
             return false
         }
-        val headers = headersFor(channel)
+        val channelHeaders = headersFor(channel)
         val index = channels.indexOfFirst { it.url == data }
         var diag = Diag.ChannelDiag()
 
@@ -279,7 +279,7 @@ class MarocLiveProvider : MainAPI() {
             }
             Diag.kv("PLAYBACK PATH", "extract -> hand to player")
         } else {
-            Log.d("MarocLive", "loadLinks: ${channel.name} url=$data referer=${channel.referer ?: "none"} headers=$headers")
+            Log.d("MarocLive", "loadLinks: ${channel.name} url=$data referer=${channel.referer ?: "none"} headers=$channelHeaders")
         }
 
         val emitRawFallback: suspend () -> Boolean = {
@@ -292,7 +292,7 @@ class MarocLiveProvider : MainAPI() {
                     type = ExtractorLinkType.M3U8
                 ) {
                     referer = channel.referer ?: ""
-                    headers = headers
+                    headers = channelHeaders
                     quality = Qualities.Unknown.value
                 }
             )
@@ -304,7 +304,7 @@ class MarocLiveProvider : MainAPI() {
                 channel.name,
                 data,
                 referer = channel.referer ?: "",
-                headers = headers
+                headers = channelHeaders
             )
             if (MAX_PLAYBACK_DEBUG) {
                 Diag.kv(
