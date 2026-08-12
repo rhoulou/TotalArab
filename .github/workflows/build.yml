@@ -18,6 +18,9 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    # Skip builds triggered by our own "Build plugins" commit, otherwise the
+    # version bump would loop forever. Manual dispatches always run.
+    if: github.event_name == 'workflow_dispatch' || github.event.head_commit.author.name != 'GitHub Actions'
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -35,17 +38,105 @@ jobs:
         with:
           gradle-version: 8.12
 
-      - name: Build plugin
+      - name: Bump version of changed providers
+        id: bump
         run: |
-          gradle make
-          find . -name "*.cs3" -exec cp {} . \;
-          ls -la *.cs3
+          python3 - <<'PY'
+          import json, os, re, subprocess
+
+          repo = os.environ["GITHUB_WORKSPACE"]
+          os.chdir(repo)
+          with open("plugins.json") as f:
+              plugins = json.load(f)
+          by_name = {p["internalName"]: p for p in plugins}
+
+          event = os.environ.get("GITHUB_EVENT_NAME", "")
+          before = os.environ.get("GITHUB_EVENT_BEFORE", "")
+          changed = []
+          if event == "push" and before:
+              out = subprocess.run(
+                  ["git", "diff", "--name-only", before, "HEAD"],
+                  capture_output=True, text=True, check=True,
+              ).stdout
+              changed = sorted({
+                  line.split("/", 1)[0]
+                  for line in out.splitlines()
+                  if "/" in line and line.split("/", 1)[0] in by_name
+              })
+          else:
+              changed = sorted(by_name)
+          print("CHANGED_PROVIDERS=" + " ".join(changed))
+
+          versions = []
+          for name in changed:
+              p = by_name[name]
+              versions.append(f"{name}:{p['version']} -> {p['version'] + 1}")
+              p["version"] += 1
+              p["url"] = p["url"].rsplit("/", 1)[0] + f"/{name}_{p['version']}.cs3"
+              gradle_file = f"{name}/build.gradle.kts"
+              with open(gradle_file) as f:
+                  text = f.read()
+              text = re.sub(r"^version = \d+", f"version = {p['version']}", text, count=1, flags=re.MULTILINE)
+              with open(gradle_file, "w") as f:
+                  f.write(text)
+          with open("plugins.json", "w") as f:
+              json.dump(plugins, f, indent=4)
+              f.write("\n")
+          print("VERSIONS")
+          print("\n".join(versions))
+
+          with open(os.environ["GITHUB_ENV"], "a") as f:
+              f.write(f"CHANGED_PROVIDERS={' '.join(changed)}\n")
+          PY
+
+      - name: Build plugin
+        if: env.CHANGED_PROVIDERS != ''
+        run: |
+          set -euo pipefail
+          for p in $CHANGED_PROVIDERS; do
+            gradle ":$p:make"
+          done
+
+      - name: Stage artifacts + hashes + verify
+        if: env.CHANGED_PROVIDERS != ''
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import hashlib, json, os, subprocess, zipfile
+
+          with open("plugins.json") as f:
+              plugins = json.load(f)
+          changed = os.environ["CHANGED_PROVIDERS"].split()
+          for name in changed:
+              p = next(x for x in plugins if x["internalName"] == name)
+              src = f"{name}/build/{name}.cs3"
+              blob = open(src, "rb").read()
+              p["fileSize"] = len(blob)
+              p["fileHash"] = "sha256-" + hashlib.sha256(blob).hexdigest()
+              open(f"{name}.cs3", "wb").write(blob)
+              open(f"{name}_{p['version']}.cs3", "wb").write(blob)
+          with open("plugins.json", "w") as f:
+              json.dump(plugins, f, indent=4)
+              f.write("\n")
+          for name in changed:
+              p = next(x for x in plugins if x["internalName"] == name)
+              with zipfile.ZipFile(f"{name}.cs3") as z:
+                  manifest = json.loads(z.read("manifest.json"))
+              expected = p["version"]
+              if manifest.get("version") != expected:
+                  raise SystemExit(f"ERROR: {name} manifest version {manifest.get('version')} != {expected}")
+              print(f"OK {name} v{expected} ({p['fileSize']} bytes)")
+          PY
 
       - name: Commit plugin
+        if: env.CHANGED_PROVIDERS != ''
         run: |
           git config --local user.email "actions@github.com"
           git config --local user.name "GitHub Actions"
-          git add *.cs3
+          git add *.cs3 plugins.json
+          for p in $CHANGED_PROVIDERS; do
+            git add "$p/build.gradle.kts"
+          done
           if git diff --cached --quiet; then
             echo "No new build to commit"
           else
