@@ -18,6 +18,7 @@ import com.lagradost.cloudstream3.utils.ExtractorLinkType
 import com.lagradost.cloudstream3.utils.M3u8Helper
 import com.lagradost.cloudstream3.utils.Qualities
 import com.lagradost.cloudstream3.utils.newExtractorLink
+import java.net.URLEncoder
 
 private const val DIAG_ALL_URL = "maroclive://diagnostics/all"
 
@@ -35,7 +36,8 @@ class MarocLiveProvider : MainAPI() {
         val category: String,
         val referer: String? = null,
         val userAgent: String? = null,
-        val showOnHome: Boolean = true
+        val showOnHome: Boolean = true,
+        val requiresToken: Boolean = false
     )
 
     private val browserUserAgent =
@@ -43,8 +45,50 @@ class MarocLiveProvider : MainAPI() {
 
     private val snrtReferer = "https://snrt.player.easybroadcast.io/"
     private val easybroadcastBase = "https://cdn.live.easybroadcast.io/abr_corp"
+    private val tokenServer = "https://token.easybroadcast.io/all"
     private val thumbs = "https://raw.githubusercontent.com/rhoulou/TotalArab/main/MarocLiveProvider/thumbnails"
     private val twoMLogo = "$thumbs/2m.png"
+
+    private var cachedSignedBase: String? = null
+    private var cachedSignedUrl: String? = null
+    private var cachedSignedExpiry: Long = 0L
+
+    private suspend fun signUrl(base: String): String {
+        val now = System.currentTimeMillis() / 1000
+        if (cachedSignedBase == base && cachedSignedUrl != null && cachedSignedExpiry - now > 120L) {
+            return cachedSignedUrl ?: base
+        }
+        try {
+            val target = "$tokenServer?url=${URLEncoder.encode(base, "UTF-8")}"
+            val res = Diag.httpGet(target, mapOf("Referer" to snrtReferer))
+            if (MAX_PLAYBACK_DEBUG) {
+                Diag.kv("TOKEN REQUEST", "status=${res.status} failure=${res.failure?.message ?: "none"}")
+                Diag.kv("TOKEN URL", res.finalUrl)
+            }
+            if (res.failure == null && res.status in 200..399 && res.bodyText != null) {
+                val params = res.bodyText.trim().removePrefix("?").split('&').mapNotNull { part ->
+                    val kv = part.split('=', limit = 2)
+                    if (kv.size == 2) kv[0] to kv[1] else null
+                }.toMap()
+                val token = params["token"]
+                val expires = params["expires"]?.toLongOrNull()
+                val tokenPath = params["token_path"]
+                if (token != null && expires != null && tokenPath != null) {
+                    val query = "token=$token&expires=$expires&token_path=${URLEncoder.encode(tokenPath, "UTF-8")}"
+                    val signed = "$base?$query"
+                    cachedSignedBase = base
+                    cachedSignedUrl = signed
+                    cachedSignedExpiry = expires
+                    if (MAX_PLAYBACK_DEBUG) Diag.kv("SIGNED URL", signed)
+                    return signed
+                }
+                Diag.w("signUrl: token response missing fields: ${res.bodyText}")
+            }
+        } catch (t: Throwable) {
+            Diag.e("signUrl: token fetch failed for $base", t)
+        }
+        return base
+    }
 
     private val channels = listOf(
         Channel("2M", "http://185.9.2.18/chid_218/index.m3u8", twoMLogo, "2M"),
@@ -67,21 +111,24 @@ class MarocLiveProvider : MainAPI() {
             "$easybroadcastBase/73_aloula_w1dqfwm/playlist_dvr.m3u8",
             "$thumbs/al-aoula.png",
             "SNRT",
-            referer = snrtReferer
+            referer = snrtReferer,
+            requiresToken = true
         ),
         Channel(
             "Al Aoula Laâyoune",
             "$easybroadcastBase/73_laayoune_pgagr52/playlist_dvr.m3u8",
             "$thumbs/laayoune.png",
             "SNRT",
-            referer = snrtReferer
+            referer = snrtReferer,
+            requiresToken = true
         ),
         Channel(
             "Al Maghribia",
             "$easybroadcastBase/73_almaghribia_83tz85q/playlist_dvr.m3u8",
             "$thumbs/almaghribia.png",
             "SNRT",
-            referer = snrtReferer
+            referer = snrtReferer,
+            requiresToken = true
         ),
         Channel(
             "Al Maghribia (alt)",
@@ -95,28 +142,32 @@ class MarocLiveProvider : MainAPI() {
             "$easybroadcastBase/73_arryadia_k2tgcj0/playlist_dvr.m3u8",
             "$thumbs/arryadia.png",
             "SNRT",
-            referer = snrtReferer
+            referer = snrtReferer,
+            requiresToken = true
         ),
         Channel(
             "Assadissa",
             "$easybroadcastBase/73_assadissa_7b7u5n1/playlist_dvr.m3u8",
             "$thumbs/assadissa.png",
             "SNRT",
-            referer = snrtReferer
+            referer = snrtReferer,
+            requiresToken = true
         ),
         Channel(
             "Athaqafia",
             "$easybroadcastBase/73_arrabia_hthcj4p/playlist_dvr.m3u8",
             "$thumbs/athaqafia.png",
             "SNRT",
-            referer = snrtReferer
+            referer = snrtReferer,
+            requiresToken = true
         ),
         Channel(
             "Tamazight TV",
             "$easybroadcastBase/73_tamazight_tccybxt/playlist_dvr.m3u8",
             "$thumbs/tamazight.png",
             "SNRT",
-            referer = snrtReferer
+            referer = snrtReferer,
+            requiresToken = true
         ),
         Channel(
             "Chada TV",
@@ -306,9 +357,12 @@ class MarocLiveProvider : MainAPI() {
         val index = channels.indexOfFirst { it.url == data }
         var diag = Diag.ChannelDiag()
 
+        val effectiveUrl = if (channel.requiresToken) signUrl(data) else data
+
         if (MAX_PLAYBACK_DEBUG) {
             diag = try {
-                Diag.runChannelDiagnostics(index, chToDiag(channel))
+                val diagChannel = if (channel.requiresToken) chToDiag(channel).copy(url = effectiveUrl) else chToDiag(channel)
+                Diag.runChannelDiagnostics(index, diagChannel)
             } catch (t: Throwable) {
                 Diag.e("loadLinks: diagnostics threw for ${channel.name}", t)
                 Diag.ChannelDiag(classification = "DIAGNOSTICS FAILURE")
@@ -319,12 +373,12 @@ class MarocLiveProvider : MainAPI() {
         }
 
         val emitRawFallback: suspend () -> Boolean = {
-            Diag.w("loadLinks: ${channel.name} falling back to raw HLS url: $data")
+            Diag.w("loadLinks: ${channel.name} falling back to raw HLS url: $effectiveUrl")
             callback(
                 newExtractorLink(
                     source = channel.name,
                     name = channel.name,
-                    url = data,
+                    url = effectiveUrl,
                     type = ExtractorLinkType.M3U8
                 ) {
                     referer = channel.referer ?: ""
@@ -336,9 +390,28 @@ class MarocLiveProvider : MainAPI() {
         }
 
         return try {
+            if (channel.requiresToken) {
+                callback(
+                    newExtractorLink(
+                        source = channel.name,
+                        name = channel.name,
+                        url = effectiveUrl,
+                        type = ExtractorLinkType.M3U8
+                    ) {
+                        referer = channel.referer ?: ""
+                        headers = channelHeaders
+                        quality = Qualities.Unknown.value
+                    }
+                )
+                if (MAX_PLAYBACK_DEBUG) {
+                    Diag.kv("STREAM EXTRACTION", "PASS (1 signed master link - token-based)")
+                    logPlaybackSummary(channel, diag, 1, null)
+                }
+                return true
+            }
             val links = M3u8Helper.generateM3u8(
                 channel.name,
-                data,
+                effectiveUrl,
                 referer = channel.referer ?: "",
                 headers = channelHeaders
             )
@@ -375,7 +448,8 @@ class MarocLiveProvider : MainAPI() {
         Diag.section("FULL DIAGNOSTICS - ALL CHANNELS")
         val results = channels.mapIndexed { i, ch ->
             try {
-                Diag.runChannelDiagnostics(i, chToDiag(ch))
+                val diagChannel = if (ch.requiresToken) chToDiag(ch).copy(url = signUrl(ch.url)) else chToDiag(ch)
+                Diag.runChannelDiagnostics(i, diagChannel)
             } catch (t: Throwable) {
                 Diag.e("runChannelDiagnostics: ${ch.name} threw", t)
                 Diag.ChannelDiag(classification = "DIAGNOSTICS FAILURE")
