@@ -33,7 +33,7 @@ class MarocLiveProvider : MainAPI() {
         val name: String,
         val url: String,
         val logo: String,
-        val category: String,
+        val source: String,
         val referer: String? = null,
         val userAgent: String? = null,
         val showOnHome: Boolean = true,
@@ -90,13 +90,30 @@ class MarocLiveProvider : MainAPI() {
         return base
     }
 
+    private suspend fun signedVariantUrl(channel: Channel, signedMaster: String): String? {
+        val fetchHeaders = headersFor(channel).toMutableMap()
+        if (channel.referer != null) fetchHeaders["Referer"] = channel.referer
+        val res = Diag.httpGet(signedMaster, fetchHeaders)
+        if (res.failure != null || res.status !in 200..399 || res.bodyText == null) {
+            Diag.w("signedVariantUrl: master fetch failed for ${channel.name} (status=${res.status})")
+            return null
+        }
+        val info = Diag.hlsDiagnose(res.bodyText, res.finalUrl)
+        if (!info.isMaster) return signedMaster
+        val selected = info.selectedVariant ?: info.variants.firstOrNull() ?: return null
+        val query = signedMaster.substringAfter('?', "")
+        if (query.isEmpty()) return signedMaster
+        val variantAbs = Diag.resolveAbsolute(signedMaster.substringBefore('?'), selected.url) ?: return null
+        return "$variantAbs?$query"
+    }
+
     private val channels = listOf(
-        Channel("2M", "http://185.9.2.18/chid_218/index.m3u8", twoMLogo, "2M"),
+        Channel("2m.ma", "http://185.9.2.18/chid_218/index.m3u8", twoMLogo, "2m.ma"),
         Channel(
             "2M Monde",
             "https://cdn-globecast.akamaized.net/live/eds/2m_monde/hls_video_ts_tuhawxpiemz257adfc/2m_monde.m3u8",
             twoMLogo,
-            "2M",
+            "2m.ma",
             referer = "https://2m.ma",
             userAgent = browserUserAgent
         ),
@@ -104,13 +121,13 @@ class MarocLiveProvider : MainAPI() {
             "2M Monde +1",
             "https://d2qh3gh0k5vp3v.cloudfront.net/v1/master/3722c60a815c199d9c0ef36c5b73da68a62b09d1/cc-n6pess5lwbghr/2M_ES.m3u8",
             twoMLogo,
-            "2M"
+            "2m.ma"
         ),
         Channel(
             "Al Aoula",
             "$easybroadcastBase/73_aloula_w1dqfwm/playlist_dvr.m3u8",
             "$thumbs/al-aoula.png",
-            "SNRT",
+            "snrtlive.ma",
             referer = snrtReferer,
             requiresToken = true
         ),
@@ -118,7 +135,7 @@ class MarocLiveProvider : MainAPI() {
             "Al Aoula Laâyoune",
             "$easybroadcastBase/73_laayoune_pgagr52/playlist_dvr.m3u8",
             "$thumbs/laayoune.png",
-            "SNRT",
+            "snrtlive.ma",
             referer = snrtReferer,
             requiresToken = true
         ),
@@ -126,7 +143,7 @@ class MarocLiveProvider : MainAPI() {
             "Al Maghribia",
             "$easybroadcastBase/73_almaghribia_83tz85q/playlist_dvr.m3u8",
             "$thumbs/almaghribia.png",
-            "SNRT",
+            "snrtlive.ma",
             referer = snrtReferer,
             requiresToken = true
         ),
@@ -141,7 +158,7 @@ class MarocLiveProvider : MainAPI() {
             "Arryadia",
             "$easybroadcastBase/73_arryadia_k2tgcj0/playlist_dvr.m3u8",
             "$thumbs/arryadia.png",
-            "SNRT",
+            "snrtlive.ma",
             referer = snrtReferer,
             requiresToken = true
         ),
@@ -149,7 +166,7 @@ class MarocLiveProvider : MainAPI() {
             "Assadissa",
             "$easybroadcastBase/73_assadissa_7b7u5n1/playlist_dvr.m3u8",
             "$thumbs/assadissa.png",
-            "SNRT",
+            "snrtlive.ma",
             referer = snrtReferer,
             requiresToken = true
         ),
@@ -157,7 +174,7 @@ class MarocLiveProvider : MainAPI() {
             "Athaqafia",
             "$easybroadcastBase/73_arrabia_hthcj4p/playlist_dvr.m3u8",
             "$thumbs/athaqafia.png",
-            "SNRT",
+            "snrtlive.ma",
             referer = snrtReferer,
             requiresToken = true
         ),
@@ -165,7 +182,7 @@ class MarocLiveProvider : MainAPI() {
             "Tamazight TV",
             "$easybroadcastBase/73_tamazight_tccybxt/playlist_dvr.m3u8",
             "$thumbs/tamazight.png",
-            "SNRT",
+            "snrtlive.ma",
             referer = snrtReferer,
             requiresToken = true
         ),
@@ -185,86 +202,86 @@ class MarocLiveProvider : MainAPI() {
             "Medi 1 TV Maghreb",
             "$easybroadcastBase/83_medi1tv-maghreb_jnbspmg/playlist.m3u8",
             "$thumbs/medi1.png",
-            "Medi1 TV"
+            "medi1tv.com"
         ),
         Channel(
             "Medi 1 TV Maghreb (DVR 6h)",
             "$easybroadcastBase/83_medi1tv-maghreb_jnbspmg/playlist_dvr.m3u8",
             "$thumbs/medi1.png",
-            "Medi1 TV",
+            "medi1tv.com",
             showOnHome = false
         ),
         Channel(
             "Medi 1 TV Afrique",
             "$easybroadcastBase/83_medi1tv-afrique_tm7tu45/playlist.m3u8",
             "$thumbs/medi1.png",
-            "Medi1 TV"
+            "medi1tv.com"
         ),
         Channel(
             "Medi 1 TV Afrique (DVR 6h)",
             "$easybroadcastBase/83_medi1tv-afrique_tm7tu45/playlist_dvr.m3u8",
             "$thumbs/medi1.png",
-            "Medi1 TV",
+            "medi1tv.com",
             showOnHome = false
         ),
         Channel(
             "Medi 1 TV Arabic",
             "$easybroadcastBase/83_medi1tv-arabic_g90v4ec/playlist.m3u8",
             "$thumbs/medi1.png",
-            "Medi1 TV"
+            "medi1tv.com"
         ),
         Channel(
             "Medi 1 TV Arabic (DVR 6h)",
             "$easybroadcastBase/83_medi1tv-arabic_g90v4ec/playlist_dvr.m3u8",
             "$thumbs/medi1.png",
-            "Medi1 TV",
+            "medi1tv.com",
             showOnHome = false
         ),
         Channel(
             "Medi 1 Radio Maghreb",
             "https://streaming1.medi1tv.com/radio/radio_mag.stream_aac/playlist.m3u8",
             "$thumbs/medi1-radio.png",
-            "Medi1 Radio"
+            "medi1tv.com"
         ),
         Channel(
             "Medi 1 Radio Afrique",
             "https://streaming1.medi1tv.com/radio/radio_afr.stream_aac/playlist.m3u8",
             "$thumbs/medi1-radio.png",
-            "Medi1 Radio"
+            "medi1tv.com"
         ),
         Channel(
             "Alidaa Alwatania",
             "https://cdnamd-hls-globecast.akamaized.net/live/ramdisk/radio_idaa_watanya/hls_snrt_radio/index.m3u8",
             "$thumbs/radio-watania.png",
-            "SNRT Radio"
+            "snrtlive.ma"
         ),
         Channel(
             "Chaine Inter",
             "https://cdnamd-hls-globecast.akamaized.net/live/ramdisk/radio_chaine_inter/hls_snrt_radio/index.m3u8",
             "$thumbs/radio-inter.png",
-            "SNRT Radio"
+            "snrtlive.ma"
         ),
         Channel(
             "Idaât Mohammed Assadiss",
             "https://cdnamd-hls-globecast.akamaized.net/live/ramdisk/radio_mohammed_6/hls_snrt_radio/index.m3u8",
             "$thumbs/radio-assadiss.png",
-            "SNRT Radio"
+            "snrtlive.ma"
         ),
         Channel(
             "Alidaâ Alamazighia",
             "https://cdnamd-hls-globecast.akamaized.net/live/ramdisk/radio_amazigh/hls_snrt_radio/index.m3u8",
             "$thumbs/radio-amazigh.png",
-            "SNRT Radio"
+            "snrtlive.ma"
         ),
         Channel(
             "Radio 2M",
             "https://cdnamd-hls-globecast.akamaized.net/live/ramdisk/radio_2m/radio_hls_ts_hy217612tge1f21j83/radio_2m-mp4a_130400_qad=1.m3u8",
             twoMLogo,
-            "2M Radio"
+            "2m.ma"
         )
     )
 
-    private val categories = listOf("SNRT", "SNRT Radio", "2M", "2M Radio", "Medi1 TV", "Medi1 Radio", "Autres")
+    private val homeRows = listOf("2m.ma", "snrtlive.ma", "medi1tv.com", "Autres")
 
     private fun Channel.toLiveSearch(): LiveSearchResponse =
         newLiveSearchResponse(name, url, TvType.Live) {
@@ -276,6 +293,7 @@ class MarocLiveProvider : MainAPI() {
         if (channel.userAgent != null) mapOf("User-Agent" to channel.userAgent) else emptyMap()
 
     override suspend fun getMainPage(page: Int, request: MainPageRequest): HomePageResponse {
+        if (page > 1) return newHomePageResponse(emptyList())
         val items = mutableListOf<HomePageList>()
         if (MAX_PLAYBACK_DEBUG) {
             items.add(
@@ -291,10 +309,10 @@ class MarocLiveProvider : MainAPI() {
                 )
             )
         }
-        for (category in categories) {
-            val group = channels.filter { it.category == category && it.showOnHome }.map { it.toLiveSearch() }
+        for (source in homeRows) {
+            val group = channels.filter { it.source == source && it.showOnHome }.map { it.toLiveSearch() }
             if (group.isNotEmpty()) {
-                items.add(HomePageList(category, group, isHorizontalImages = true))
+                items.add(HomePageList(source, group, isHorizontalImages = true))
             }
         }
         return newHomePageResponse(items)
@@ -391,11 +409,21 @@ class MarocLiveProvider : MainAPI() {
 
         return try {
             if (channel.requiresToken) {
+                val signedMaster = signUrl(data)
+                val playUrl = signedVariantUrl(channel, signedMaster) ?: signedMaster
+                if (MAX_PLAYBACK_DEBUG) {
+                    Diag.kv("PLAYBACK URL", playUrl)
+                    Diag.kv(
+                        "TOKEN TARGET",
+                        if (playUrl == signedMaster) "SIGNED MASTER (fallback)"
+                        else "SIGNED MEDIA VARIANT (highest bandwidth)"
+                    )
+                }
                 callback(
                     newExtractorLink(
                         source = channel.name,
                         name = channel.name,
-                        url = effectiveUrl,
+                        url = playUrl,
                         type = ExtractorLinkType.M3U8
                     ) {
                         referer = channel.referer ?: ""
@@ -404,7 +432,7 @@ class MarocLiveProvider : MainAPI() {
                     }
                 )
                 if (MAX_PLAYBACK_DEBUG) {
-                    Diag.kv("STREAM EXTRACTION", "PASS (1 signed master link - token-based)")
+                    Diag.kv("STREAM EXTRACTION", "PASS (1 signed media link - token-based)")
                     logPlaybackSummary(channel, diag, 1, null)
                 }
                 return true
