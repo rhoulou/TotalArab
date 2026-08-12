@@ -701,5 +701,25 @@
         "repositoryUrl": "https://github.com/rhoulou/TotalArab",
         "fileSize": 47793,
         "fileHash": "sha256-6ceedc015996c0102de494146d81ffe85f73c1f1468fee07dba8c96e00c598fa"
+    },
+    {
+        "name": "MarocLive",
+        "internalName": "MarocLiveProvider",
+        "url": "https://raw.githubusercontent.com/rhoulou/TotalArab/main/MarocLiveProvider_1.cs3",
+        "status": 1,
+        "version": 1,
+        "apiVersion": 1,
+        "authors": [
+            "rhoulou"
+        ],
+        "description": "Moroccan live TV & radio (SNRT, 2M, Medi1 TV/Radio, Chada, StoryChannel) for CloudStream 3.",
+        "language": "ar",
+        "tvTypes": [
+            "Live"
+        ],
+        "iconUrl": "https://www.snrt.ma/sites/default/files/2023-03/alaoula.png",
+        "repositoryUrl": "https://github.com/rhoulou/TotalArab",
+        "fileSize": 11201,
+        "fileHash": "sha256-e7afa61cc7dd8663103206d9fc4d6ffecff01ad8d52fb714fe3428a3d4c48dae"
     }
 ]
