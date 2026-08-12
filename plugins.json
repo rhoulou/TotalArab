@@ -705,9 +705,9 @@
     {
         "name": "MarocLive",
         "internalName": "MarocLiveProvider",
-        "url": "https://raw.githubusercontent.com/rhoulou/TotalArab/main/MarocLiveProvider_1.cs3",
+        "url": "https://raw.githubusercontent.com/rhoulou/TotalArab/main/MarocLiveProvider_2.cs3",
         "status": 1,
-        "version": 1,
+        "version": 2,
         "apiVersion": 1,
         "authors": [
             "rhoulou"
@@ -717,9 +717,9 @@
         "tvTypes": [
             "Live"
         ],
-        "iconUrl": "https://www.snrt.ma/sites/default/files/2023-03/alaoula.png",
+        "iconUrl": "https://flagcdn.com/w320/ma.png",
         "repositoryUrl": "https://github.com/rhoulou/TotalArab",
-        "fileSize": 11201,
-        "fileHash": "sha256-e7afa61cc7dd8663103206d9fc4d6ffecff01ad8d52fb714fe3428a3d4c48dae"
+        "fileSize": 13613,
+        "fileHash": "sha256-f12f1862c16681c2d93188b1837c20ef636e444852ef1588c25d53a76f682a74"
     }
 ]
