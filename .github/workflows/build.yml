@@ -40,6 +40,8 @@ jobs:
 
       - name: Bump version of changed providers
         id: bump
+        env:
+          GITHUB_EVENT_BEFORE: ${{ github.event.before }}
         run: |
           python3 - <<'PY'
           import json, os, re, subprocess
