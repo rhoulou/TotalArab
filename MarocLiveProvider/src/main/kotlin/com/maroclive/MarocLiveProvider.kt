@@ -34,7 +34,8 @@ class MarocLiveProvider : MainAPI() {
         val logo: String,
         val category: String,
         val referer: String? = null,
-        val userAgent: String? = null
+        val userAgent: String? = null,
+        val showOnHome: Boolean = true
     )
 
     private val browserUserAgent =
@@ -86,7 +87,8 @@ class MarocLiveProvider : MainAPI() {
             "Al Maghribia (alt)",
             "http://185.9.2.18/chid_205/index.m3u8",
             "$thumbs/almaghribia.png",
-            "Autres"
+            "Autres",
+            showOnHome = false
         ),
         Channel(
             "Arryadia",
@@ -138,7 +140,8 @@ class MarocLiveProvider : MainAPI() {
             "Medi 1 TV Maghreb (DVR 6h)",
             "$easybroadcastBase/83_medi1tv-maghreb_jnbspmg/playlist_dvr.m3u8",
             "$thumbs/medi1.png",
-            "Medi1 TV"
+            "Medi1 TV",
+            showOnHome = false
         ),
         Channel(
             "Medi 1 TV Afrique",
@@ -150,7 +153,8 @@ class MarocLiveProvider : MainAPI() {
             "Medi 1 TV Afrique (DVR 6h)",
             "$easybroadcastBase/83_medi1tv-afrique_tm7tu45/playlist_dvr.m3u8",
             "$thumbs/medi1.png",
-            "Medi1 TV"
+            "Medi1 TV",
+            showOnHome = false
         ),
         Channel(
             "Medi 1 TV Arabic",
@@ -162,7 +166,8 @@ class MarocLiveProvider : MainAPI() {
             "Medi 1 TV Arabic (DVR 6h)",
             "$easybroadcastBase/83_medi1tv-arabic_g90v4ec/playlist_dvr.m3u8",
             "$thumbs/medi1.png",
-            "Medi1 TV"
+            "Medi1 TV",
+            showOnHome = false
         ),
         Channel(
             "Medi 1 Radio Maghreb",
@@ -175,10 +180,40 @@ class MarocLiveProvider : MainAPI() {
             "https://streaming1.medi1tv.com/radio/radio_afr.stream_aac/playlist.m3u8",
             "$thumbs/medi1-radio.png",
             "Medi1 Radio"
+        ),
+        Channel(
+            "Alidaa Alwatania",
+            "https://cdnamd-hls-globecast.akamaized.net/live/ramdisk/radio_idaa_watanya/hls_snrt_radio/index.m3u8",
+            "$thumbs/radio-watania.png",
+            "SNRT Radio"
+        ),
+        Channel(
+            "Chaine Inter",
+            "https://cdnamd-hls-globecast.akamaized.net/live/ramdisk/radio_chaine_inter/hls_snrt_radio/index.m3u8",
+            "$thumbs/radio-inter.png",
+            "SNRT Radio"
+        ),
+        Channel(
+            "Idaât Mohammed Assadiss",
+            "https://cdnamd-hls-globecast.akamaized.net/live/ramdisk/radio_mohammed_6/hls_snrt_radio/index.m3u8",
+            "$thumbs/radio-assadiss.png",
+            "SNRT Radio"
+        ),
+        Channel(
+            "Alidaâ Alamazighia",
+            "https://cdnamd-hls-globecast.akamaized.net/live/ramdisk/radio_amazigh/hls_snrt_radio/index.m3u8",
+            "$thumbs/radio-amazigh.png",
+            "SNRT Radio"
+        ),
+        Channel(
+            "Radio 2M",
+            "https://cdnamd-hls-globecast.akamaized.net/live/ramdisk/radio_2m/radio_hls_ts_hy217612tge1f21j83/radio_2m-mp4a_130400_qad=1.m3u8",
+            twoMLogo,
+            "2M Radio"
         )
     )
 
-    private val categories = listOf("SNRT", "2M", "Medi1 TV", "Medi1 Radio", "Autres")
+    private val categories = listOf("SNRT", "SNRT Radio", "2M", "2M Radio", "Medi1 TV", "Medi1 Radio", "Autres")
 
     private fun Channel.toLiveSearch(): LiveSearchResponse =
         newLiveSearchResponse(name, url, TvType.Live) {
@@ -206,7 +241,7 @@ class MarocLiveProvider : MainAPI() {
             )
         }
         for (category in categories) {
-            val group = channels.filter { it.category == category }.map { it.toLiveSearch() }
+            val group = channels.filter { it.category == category && it.showOnHome }.map { it.toLiveSearch() }
             if (group.isNotEmpty()) {
                 items.add(HomePageList(category, group, isHorizontalImages = true))
             }
