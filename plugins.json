@@ -2,9 +2,9 @@
     {
         "name": "Akwam",
         "internalName": "AkwamProvider",
-        "url": "https://raw.githubusercontent.com/rhoulou/TotalArab/main/AkwamProvider_11.cs3",
+        "url": "https://raw.githubusercontent.com/rhoulou/TotalArab/main/AkwamProvider_12.cs3",
         "status": 1,
-        "version": 11,
+        "version": 12,
         "apiVersion": 1,
         "authors": [
             "rhoulou"
@@ -19,15 +19,15 @@
         ],
         "iconUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQq1OMQIgGXbMMPF8_szyAFJAjGV50VjCpZrR-Bgmlwvg&s",
         "repositoryUrl": "https://github.com/rhoulou/TotalArab",
-        "fileSize": 50443,
-        "fileHash": "sha256-26b0464511a093ab6e17c0197f76c7f2a47a5527c774c3fffaa1129c34de224e"
+        "fileSize": 50444,
+        "fileHash": "sha256-c7b2cdbfc787aa04696ea8f548883f17c2f65d6531a8965c64b6b5e7c634df36"
     },
     {
         "name": "WeCima",
         "internalName": "WeCimaProvider",
-        "url": "https://raw.githubusercontent.com/rhoulou/TotalArab/main/WeCimaProvider_11.cs3",
+        "url": "https://raw.githubusercontent.com/rhoulou/TotalArab/main/WeCimaProvider_12.cs3",
         "status": 1,
-        "version": 11,
+        "version": 12,
         "apiVersion": 1,
         "authors": [
             "rhoulou"
@@ -40,15 +40,15 @@
         ],
         "iconUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTMF29SVl7LOlFaI8GHbFYxuvm-Z_Q5s7IPWNMhx_SbkQ&s",
         "repositoryUrl": "https://github.com/rhoulou/TotalArab",
-        "fileSize": 62429,
-        "fileHash": "sha256-a521a831349c7319e1c2ddc2635db00552a0428ffb0f493e07761591f6cb3eb4"
+        "fileSize": 62430,
+        "fileHash": "sha256-a27cf10b56fb4ca86c13088d77ae61fb7d2ebcfa62231ed1cf81c690c7faec80"
     },
     {
         "name": "TVgarden(Famelack)",
         "internalName": "TVgardenProvider",
-        "url": "https://raw.githubusercontent.com/rhoulou/TotalArab/main/TVgardenProvider_11.cs3",
+        "url": "https://raw.githubusercontent.com/rhoulou/TotalArab/main/TVgardenProvider_12.cs3",
         "status": 1,
-        "version": 11,
+        "version": 12,
         "apiVersion": 1,
         "authors": [
             "rhoulou"
@@ -61,14 +61,14 @@
         "iconUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS9Lci-tXtOtWaHcEp9An7bqIkXs4yzH7EcfA&s",
         "repositoryUrl": "https://github.com/rhoulou/TotalArab",
         "fileSize": 15616,
-        "fileHash": "sha256-063e7531a1aa40642732f99d3c9f9c33f3c2def042bffddacbec229760278f3d"
+        "fileHash": "sha256-18e79db06c303691bc29b039907c079f8092fe44058fcf0d3fee73f34cc1fe3f"
     },
     {
         "name": "CimaLight",
         "internalName": "CimalightProvider",
-        "url": "https://raw.githubusercontent.com/rhoulou/TotalArab/main/CimalightProvider_11.cs3",
+        "url": "https://raw.githubusercontent.com/rhoulou/TotalArab/main/CimalightProvider_12.cs3",
         "status": 1,
-        "version": 11,
+        "version": 12,
         "apiVersion": 1,
         "authors": [
             "rhoulou"
@@ -82,14 +82,14 @@
         "iconUrl": null,
         "repositoryUrl": "https://github.com/rhoulou/TotalArab",
         "fileSize": 25645,
-        "fileHash": "sha256-5400deb79b62b4f50cccddf542870ff33285dd0e1ab36245bd65f1b88cd642c3"
+        "fileHash": "sha256-ddd006b2fc309dbd6b01cf2a8d961b8f703fa89803995b91a97942a45629b5fc"
     },
     {
         "name": "Anime4Up",
         "internalName": "Anime4upProvider",
-        "url": "https://raw.githubusercontent.com/rhoulou/TotalArab/main/Anime4upProvider_11.cs3",
+        "url": "https://raw.githubusercontent.com/rhoulou/TotalArab/main/Anime4upProvider_12.cs3",
         "status": 1,
-        "version": 11,
+        "version": 12,
         "apiVersion": 1,
         "authors": [
             "rhoulou"
@@ -104,14 +104,14 @@
         "iconUrl": null,
         "repositoryUrl": "https://github.com/rhoulou/TotalArab",
         "fileSize": 24264,
-        "fileHash": "sha256-c9ac411b38e3a1f84d30654d6aa8407aa840f32ecb5fe4b0317f8d4e77d529a7"
+        "fileHash": "sha256-221b2b1305197200b1b142d46406281cdbd291e8c7cb1f55d4608813b8d169fc"
     },
     {
         "name": "Dima Toon",
         "internalName": "DimaToonProvider",
-        "url": "https://raw.githubusercontent.com/rhoulou/TotalArab/main/DimaToonProvider_11.cs3",
+        "url": "https://raw.githubusercontent.com/rhoulou/TotalArab/main/DimaToonProvider_12.cs3",
         "status": 1,
-        "version": 11,
+        "version": 12,
         "apiVersion": 1,
         "authors": [
             "rhoulou"
@@ -124,14 +124,14 @@
         "iconUrl": null,
         "repositoryUrl": "https://github.com/rhoulou/TotalArab",
         "fileSize": 12461,
-        "fileHash": "sha256-2a1584dcc50f258390d5131c827f2b0146f9cb0aee2b89cee0c802c6bdce15b8"
+        "fileHash": "sha256-b45eb903b4bd7a6be602c8cceaee61d9ff4c9611ba4c9d91eb92bee846d6c803"
     },
     {
         "name": "TukTukcima",
         "internalName": "TuktukcimaProvider",
-        "url": "https://raw.githubusercontent.com/rhoulou/TotalArab/main/TuktukcimaProvider_11.cs3",
+        "url": "https://raw.githubusercontent.com/rhoulou/TotalArab/main/TuktukcimaProvider_12.cs3",
         "status": 1,
-        "version": 11,
+        "version": 12,
         "apiVersion": 1,
         "authors": [
             "rhoulou"
@@ -146,14 +146,14 @@
         "iconUrl": null,
         "repositoryUrl": "https://github.com/rhoulou/TotalArab",
         "fileSize": 24758,
-        "fileHash": "sha256-fa55d34afd14d0f6ce3e4f31c1fe36303de6254eb413fc50a28523833e07cd4e"
+        "fileHash": "sha256-ce010e5e52f88681fb88a727de5ed2c299f38848fa6678ae4d7cb148cf0d2e7d"
     },
     {
         "name": "Syria Live",
         "internalName": "SyrialiveProvider",
-        "url": "https://raw.githubusercontent.com/rhoulou/TotalArab/main/SyrialiveProvider_11.cs3",
+        "url": "https://raw.githubusercontent.com/rhoulou/TotalArab/main/SyrialiveProvider_12.cs3",
         "status": 1,
-        "version": 11,
+        "version": 12,
         "apiVersion": 1,
         "authors": [
             "rhoulou"
@@ -166,15 +166,15 @@
         ],
         "iconUrl": null,
         "repositoryUrl": "https://github.com/rhoulou/TotalArab",
-        "fileSize": 17244,
-        "fileHash": "sha256-d9c2b7327f61cdd17090fd4f7e993afedb223887dc2c34ac6ae40a3ae37f8c3e"
+        "fileSize": 17245,
+        "fileHash": "sha256-a62915de7b0f8265682fa3f574b26d9440b5fb9a0591d2dfabc6cd7c80bf3ee1"
     },
     {
         "name": "Viu",
         "internalName": "ViuProvider",
-        "url": "https://raw.githubusercontent.com/rhoulou/TotalArab/main/ViuProvider_11.cs3",
+        "url": "https://raw.githubusercontent.com/rhoulou/TotalArab/main/ViuProvider_12.cs3",
         "status": 1,
-        "version": 11,
+        "version": 12,
         "apiVersion": 1,
         "authors": [
             "rhoulou"
@@ -189,14 +189,14 @@
         "iconUrl": null,
         "repositoryUrl": "https://github.com/rhoulou/TotalArab",
         "fileSize": 38264,
-        "fileHash": "sha256-4d32bc46d2e73ae512f8dbf6f2efe228253af768105bc3eb78b583d80765259a"
+        "fileHash": "sha256-0b9ea19ff2d6519250050ee73aa01b30d029f5f14de2766782ff919c18e83483"
     },
     {
         "name": "Tuni flix",
         "internalName": "TuniflixProvider",
-        "url": "https://raw.githubusercontent.com/rhoulou/TotalArab/main/TuniflixProvider_11.cs3",
+        "url": "https://raw.githubusercontent.com/rhoulou/TotalArab/main/TuniflixProvider_12.cs3",
         "status": 1,
-        "version": 11,
+        "version": 12,
         "apiVersion": 1,
         "authors": [
             "rhoulou"
@@ -210,14 +210,14 @@
         "iconUrl": null,
         "repositoryUrl": "https://github.com/rhoulou/TotalArab",
         "fileSize": 27852,
-        "fileHash": "sha256-b7c5277601633da8fd28f6dbedd27854a38e538e366224e4e19fbf567449f379"
+        "fileHash": "sha256-524bc06de53963259843b3dec69c3152fecf84e0a111c9bd4297600d12592ebc"
     },
     {
         "name": "CimaTn",
         "internalName": "CimatnProvider",
-        "url": "https://raw.githubusercontent.com/rhoulou/TotalArab/main/CimatnProvider_11.cs3",
+        "url": "https://raw.githubusercontent.com/rhoulou/TotalArab/main/CimatnProvider_12.cs3",
         "status": 1,
-        "version": 11,
+        "version": 12,
         "apiVersion": 1,
         "authors": [
             "rhoulou"
@@ -230,15 +230,15 @@
         ],
         "iconUrl": null,
         "repositoryUrl": "https://github.com/rhoulou/TotalArab",
-        "fileSize": 28385,
-        "fileHash": "sha256-2c14881266efc7296dce3f8a5aa99e88b8a64d3be3405ff5bb4ebf4c27580a8a"
+        "fileSize": 28386,
+        "fileHash": "sha256-f8da61e73bf073761cb1b5fed77de5c603f6a677a9f0afff7dc45c6cb8f527c2"
     },
     {
         "name": "Cee",
         "internalName": "CeeProvider",
-        "url": "https://raw.githubusercontent.com/rhoulou/TotalArab/main/CeeProvider_11.cs3",
+        "url": "https://raw.githubusercontent.com/rhoulou/TotalArab/main/CeeProvider_12.cs3",
         "status": 1,
-        "version": 11,
+        "version": 12,
         "apiVersion": 1,
         "authors": [
             "rhoulou"
@@ -252,14 +252,14 @@
         "iconUrl": null,
         "repositoryUrl": "https://github.com/rhoulou/TotalArab",
         "fileSize": 44132,
-        "fileHash": "sha256-6a6f3b319ca9ee3976daf47411b453eaa92557e57c388b6708a92bb1b98055c4"
+        "fileHash": "sha256-4ee93e0d732e8341ee0c67bc3ea4be5caa40e03d8899afee3be182cd2731935a"
     },
     {
         "name": "Anime3rb",
         "internalName": "Anime3rbProvider",
-        "url": "https://raw.githubusercontent.com/rhoulou/TotalArab/main/Anime3rbProvider_11.cs3",
+        "url": "https://raw.githubusercontent.com/rhoulou/TotalArab/main/Anime3rbProvider_12.cs3",
         "status": 1,
-        "version": 11,
+        "version": 12,
         "apiVersion": 1,
         "authors": [
             "rhoulou"
@@ -272,15 +272,15 @@
         ],
         "iconUrl": null,
         "repositoryUrl": "https://github.com/rhoulou/TotalArab",
-        "fileSize": 47389,
-        "fileHash": "sha256-58e56e889bcddf28688649230d92150e87c89c6b6338c5f711209e5108c445f9"
+        "fileSize": 47390,
+        "fileHash": "sha256-ef3238c14b528cb388cbc0a9adc1535da8e4a9dea18da35f2782324d0d30fbc2"
     },
     {
         "name": "YouTube",
         "internalName": "YoutubeProvider",
-        "url": "https://raw.githubusercontent.com/rhoulou/TotalArab/main/YoutubeProvider_11.cs3",
+        "url": "https://raw.githubusercontent.com/rhoulou/TotalArab/main/YoutubeProvider_12.cs3",
         "status": 1,
-        "version": 11,
+        "version": 12,
         "apiVersion": 1,
         "authors": [
             "rhoulou"
@@ -293,15 +293,15 @@
         ],
         "iconUrl": "https://raw.githubusercontent.com/Abodabodd/Oldarabrepo/refs/heads/main/img/IMG_%D9%A2%D9%A0%D9%A2%D9%A5%D9%A1%D9%A2%D9%A0%D9%A6_%D9%A1%D9%A7%D9%A2%D9%A6%D9%A1%D9%A6.jpg",
         "repositoryUrl": "https://github.com/rhoulou/TotalArab",
-        "fileSize": 142786,
-        "fileHash": "sha256-42b472885afc190b197639b0806114bda17c1da07832567f0f915cf9a961d58e"
+        "fileSize": 142787,
+        "fileHash": "sha256-28e1800b74f628aa5d6f5e6be80dbeaad8df2dd41de53a548e383be262f48fbc"
     },
     {
         "name": "LodyNet",
         "internalName": "LodynetProvider",
-        "url": "https://raw.githubusercontent.com/rhoulou/TotalArab/main/LodynetProvider_11.cs3",
+        "url": "https://raw.githubusercontent.com/rhoulou/TotalArab/main/LodynetProvider_12.cs3",
         "status": 1,
-        "version": 11,
+        "version": 12,
         "apiVersion": 1,
         "authors": [
             "rhoulou"
@@ -316,14 +316,14 @@
         "iconUrl": "https://lodynet.watch/wp-content/themes/Lodynet2020/Img/Logo.webp",
         "repositoryUrl": "https://github.com/rhoulou/TotalArab",
         "fileSize": 28882,
-        "fileHash": "sha256-bd91ace6756355d17c0fef63ce7721153e8530e9b4e85a3afad0aff259fbefe3"
+        "fileHash": "sha256-76c5b9d2e5d75c58627dee9e81d23d475f9f74f166b3a94c1e73c60fe3279a70"
     },
     {
         "name": "Top Cinema",
         "internalName": "TopcinemaProvider",
-        "url": "https://raw.githubusercontent.com/rhoulou/TotalArab/main/TopcinemaProvider_11.cs3",
+        "url": "https://raw.githubusercontent.com/rhoulou/TotalArab/main/TopcinemaProvider_12.cs3",
         "status": 1,
-        "version": 11,
+        "version": 12,
         "apiVersion": 1,
         "authors": [
             "rhoulou"
@@ -337,14 +337,14 @@
         "iconUrl": null,
         "repositoryUrl": "https://github.com/rhoulou/TotalArab",
         "fileSize": 31419,
-        "fileHash": "sha256-54399f946d461ad6cef0e412824392a61f784f669d4eba4b948977a6e432b017"
+        "fileHash": "sha256-58757d0947bf251b134a88181f7c54f5612c3dd3c553823b7f9b6602ac223d97"
     },
     {
         "name": "FullMatchShows",
         "internalName": "ReplaymatchProvider",
-        "url": "https://raw.githubusercontent.com/rhoulou/TotalArab/main/ReplaymatchProvider_11.cs3",
+        "url": "https://raw.githubusercontent.com/rhoulou/TotalArab/main/ReplaymatchProvider_12.cs3",
         "status": 1,
-        "version": 11,
+        "version": 12,
         "apiVersion": 1,
         "authors": [
             "rhoulou"
@@ -357,14 +357,14 @@
         "iconUrl": "https://fullmatchshows.com/wp-content/uploads/2024/04/LOGOSASO.png",
         "repositoryUrl": "https://github.com/rhoulou/TotalArab",
         "fileSize": 28866,
-        "fileHash": "sha256-84723861cc9f89fb70fe632f458447d130730deadb2e1f61ca31ab718ef02a92"
+        "fileHash": "sha256-288e70e687d13cca9bfde03270ef89e6711f10867851ab1529b06bcae44ccd2c"
     },
     {
         "name": "bristege",
         "internalName": "BristegeProvider",
-        "url": "https://raw.githubusercontent.com/rhoulou/TotalArab/main/BristegeProvider_11.cs3",
+        "url": "https://raw.githubusercontent.com/rhoulou/TotalArab/main/BristegeProvider_12.cs3",
         "status": 1,
-        "version": 11,
+        "version": 12,
         "apiVersion": 1,
         "authors": [
             "rhoulou"
@@ -377,15 +377,15 @@
         ],
         "iconUrl": null,
         "repositoryUrl": "https://github.com/rhoulou/TotalArab",
-        "fileSize": 26946,
-        "fileHash": "sha256-f684a58ba08021e2573b7fc73bf65edb6dad67a9aad492b6e021e177b6c9a1e7"
+        "fileSize": 26947,
+        "fileHash": "sha256-3ac1790fcb863943bd61475e510ef36b87d21e09acc09d5ed910a6b65d489250"
     },
     {
         "name": "AnimeWitcher",
         "internalName": "AnimewitcherProvider",
-        "url": "https://raw.githubusercontent.com/rhoulou/TotalArab/main/AnimewitcherProvider_11.cs3",
+        "url": "https://raw.githubusercontent.com/rhoulou/TotalArab/main/AnimewitcherProvider_12.cs3",
         "status": 1,
-        "version": 11,
+        "version": 12,
         "apiVersion": 1,
         "authors": [
             "rhoulou"
@@ -399,14 +399,14 @@
         "iconUrl": "https://raw.githubusercontent.com/Abodabodd/Oldarabrepo/refs/heads/main/img/anime_witcher_round_icon.png",
         "repositoryUrl": "https://github.com/rhoulou/TotalArab",
         "fileSize": 34019,
-        "fileHash": "sha256-dbae0c1db5787708ca906a8c16f2df04e239fbd96e6c05e74349c37a07ba931b"
+        "fileHash": "sha256-907ec6de86725ce44a38baab6473531c553cdbf46b30320911fb296b51d3e852"
     },
     {
         "name": "\u0627\u064a\u062c\u064a \u062f\u064a\u062f",
         "internalName": "EgydeadProvider",
-        "url": "https://raw.githubusercontent.com/rhoulou/TotalArab/main/EgydeadProvider_11.cs3",
+        "url": "https://raw.githubusercontent.com/rhoulou/TotalArab/main/EgydeadProvider_12.cs3",
         "status": 1,
-        "version": 11,
+        "version": 12,
         "apiVersion": 1,
         "authors": [
             "rhoulou"
@@ -419,15 +419,15 @@
         ],
         "iconUrl": null,
         "repositoryUrl": "https://github.com/rhoulou/TotalArab",
-        "fileSize": 52902,
-        "fileHash": "sha256-29b49a47291834dce3343a16a643d5760905e077bab9e4b3758dd6d02723c219"
+        "fileSize": 52903,
+        "fileHash": "sha256-b97e973fbe385aa8ff19742ba6cb6f68cd4be3d39321d107136a0ebfc46db6b3"
     },
     {
         "name": "MyCima",
         "internalName": "MyCimaProvider",
-        "url": "https://raw.githubusercontent.com/rhoulou/TotalArab/main/MyCimaProvider_11.cs3",
+        "url": "https://raw.githubusercontent.com/rhoulou/TotalArab/main/MyCimaProvider_12.cs3",
         "status": 1,
-        "version": 11,
+        "version": 12,
         "apiVersion": 1,
         "authors": [
             "rhoulou"
@@ -443,14 +443,14 @@
         "iconUrl": null,
         "repositoryUrl": "https://github.com/rhoulou/TotalArab",
         "fileSize": 47573,
-        "fileHash": "sha256-576b31638b41a3df272b330041fd75109965c03fb288b2e1b75742318d9ea2df"
+        "fileHash": "sha256-c8c17fd8d40e7f3c32ed7833571191a81f1e748a40686071d116d29ffda842eb"
     },
     {
         "name": "Asia2TV 2",
         "internalName": "Asia2tv2Provider",
-        "url": "https://raw.githubusercontent.com/rhoulou/TotalArab/main/Asia2tv2Provider_11.cs3",
+        "url": "https://raw.githubusercontent.com/rhoulou/TotalArab/main/Asia2tv2Provider_12.cs3",
         "status": 1,
-        "version": 11,
+        "version": 12,
         "apiVersion": 1,
         "authors": [
             "rhoulou"
@@ -464,15 +464,15 @@
         ],
         "iconUrl": null,
         "repositoryUrl": "https://github.com/rhoulou/TotalArab",
-        "fileSize": 14752,
-        "fileHash": "sha256-6d4cd7fe3c5f6047651ef6715aaccbe7e6e140dbeb15eb70b00bb66189d9c7db"
+        "fileSize": 14751,
+        "fileHash": "sha256-36917503bf83467d15520652a899c2758492dc3b05132bc93233ac72c48e5c57"
     },
     {
         "name": "\u0642\u0635\u0629 \u0639\u0634\u0642",
         "internalName": "ThreeiskProvider",
-        "url": "https://raw.githubusercontent.com/rhoulou/TotalArab/main/ThreeiskProvider_11.cs3",
+        "url": "https://raw.githubusercontent.com/rhoulou/TotalArab/main/ThreeiskProvider_12.cs3",
         "status": 1,
-        "version": 11,
+        "version": 12,
         "apiVersion": 1,
         "authors": [
             "rhoulou"
@@ -485,15 +485,15 @@
         ],
         "iconUrl": null,
         "repositoryUrl": "https://github.com/rhoulou/TotalArab",
-        "fileSize": 29814,
-        "fileHash": "sha256-c9a64700db10dccbfdf384d9a5fcc739a68faa10bb8990982a867b3aad882616"
+        "fileSize": 29815,
+        "fileHash": "sha256-7e153a3c7e50e6895add366c0b66bab9cb6b2883c528b448da88c259c9b1b9ff"
     },
     {
         "name": "\u0639\u0634\u0642 2",
         "internalName": "EseekProvider",
-        "url": "https://raw.githubusercontent.com/rhoulou/TotalArab/main/EseekProvider_11.cs3",
+        "url": "https://raw.githubusercontent.com/rhoulou/TotalArab/main/EseekProvider_12.cs3",
         "status": 1,
-        "version": 11,
+        "version": 12,
         "apiVersion": 1,
         "authors": [
             "rhoulou"
@@ -507,14 +507,14 @@
         "iconUrl": null,
         "repositoryUrl": "https://github.com/rhoulou/TotalArab",
         "fileSize": 37403,
-        "fileHash": "sha256-34e5aa5c6733320ec6a5b2e7c35ce655891ebb76fe8927066c677a15327c09d4"
+        "fileHash": "sha256-bfd81d8f264c000e7df6346a20a8a42258e864e9de84ba1d9a934cb02c5a5548"
     },
     {
         "name": "\u0642\u0631\u0645\u0632\u064a",
         "internalName": "KrmzyProvider",
-        "url": "https://raw.githubusercontent.com/rhoulou/TotalArab/main/KrmzyProvider_11.cs3",
+        "url": "https://raw.githubusercontent.com/rhoulou/TotalArab/main/KrmzyProvider_12.cs3",
         "status": 1,
-        "version": 11,
+        "version": 12,
         "apiVersion": 1,
         "authors": [
             "rhoulou"
@@ -527,14 +527,14 @@
         "iconUrl": null,
         "repositoryUrl": "https://github.com/rhoulou/TotalArab",
         "fileSize": 34319,
-        "fileHash": "sha256-05a4f79535346f8ab7ec036467944d04c13851dbb315aa7b4ba538ab48f88f6e"
+        "fileHash": "sha256-62f71a7979ad112852f0f61d36e5f5d085ae940ca5aa6425c01d164ad79b0d29"
     },
     {
         "name": "Animerco",
         "internalName": "AnimercoProvider",
-        "url": "https://raw.githubusercontent.com/rhoulou/TotalArab/main/AnimercoProvider_11.cs3",
+        "url": "https://raw.githubusercontent.com/rhoulou/TotalArab/main/AnimercoProvider_12.cs3",
         "status": 1,
-        "version": 11,
+        "version": 12,
         "apiVersion": 1,
         "authors": [
             "rhoulou"
@@ -548,15 +548,15 @@
         ],
         "iconUrl": "https://raw.githubusercontent.com/Abodabodd/Oldarabrepo/refs/heads/main/img/file_0000000042f861f49090744dc097ee2f.png",
         "repositoryUrl": "https://github.com/rhoulou/TotalArab",
-        "fileSize": 92079,
-        "fileHash": "sha256-deb991600aaa60344307507ac3481c54a0419dd84138990eaea801dbe2693eb8"
+        "fileSize": 92080,
+        "fileHash": "sha256-0cd46bc1f1338cab8f4c7d6cc5d5c4dffadc7f93a755a190c5ad2ba3af8cee5e"
     },
     {
         "name": "WitAnime",
         "internalName": "WitanimeProvider",
-        "url": "https://raw.githubusercontent.com/rhoulou/TotalArab/main/WitanimeProvider_11.cs3",
+        "url": "https://raw.githubusercontent.com/rhoulou/TotalArab/main/WitanimeProvider_12.cs3",
         "status": 1,
-        "version": 11,
+        "version": 12,
         "apiVersion": 1,
         "authors": [
             "rhoulou"
@@ -570,14 +570,14 @@
         "iconUrl": null,
         "repositoryUrl": "https://github.com/rhoulou/TotalArab",
         "fileSize": 49193,
-        "fileHash": "sha256-7e156c71aacc38de3acac77a66981c17aec905fbe9c9903ce67e3b62dd67acf4"
+        "fileHash": "sha256-467f0026ed027d4a859b816471c67e55e33b83802ea2d740c33a571bb422e521"
     },
     {
         "name": "Shahid4u",
         "internalName": "Shahid4uProvider",
-        "url": "https://raw.githubusercontent.com/rhoulou/TotalArab/main/Shahid4uProvider_11.cs3",
+        "url": "https://raw.githubusercontent.com/rhoulou/TotalArab/main/Shahid4uProvider_12.cs3",
         "status": 1,
-        "version": 11,
+        "version": 12,
         "apiVersion": 1,
         "authors": [
             "rhoulou"
@@ -590,15 +590,15 @@
         ],
         "iconUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS3Ig85ZYdRsjDw--peeI2RsBqOWmvnmvKKsT4UONdPMQ&s=10",
         "repositoryUrl": "https://github.com/rhoulou/TotalArab",
-        "fileSize": 31753,
-        "fileHash": "sha256-26b15a6543c62b5e2c862328b3cb0dcf8db3ca25822a367376024c28d1b6b616"
+        "fileSize": 31754,
+        "fileHash": "sha256-1cccecdc428bde3d317b70ad82c7424b6f90a32514dd1ac6cf9cfb961fd28d2b"
     },
     {
         "name": "CimaClub",
         "internalName": "CimaClubProvider",
-        "url": "https://raw.githubusercontent.com/rhoulou/TotalArab/main/CimaClubProvider_11.cs3",
+        "url": "https://raw.githubusercontent.com/rhoulou/TotalArab/main/CimaClubProvider_12.cs3",
         "status": 1,
-        "version": 11,
+        "version": 12,
         "apiVersion": 1,
         "authors": [
             "rhoulou"
@@ -611,15 +611,15 @@
         ],
         "iconUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQX1z-0NYyzyEiFs4q7X9c8SSBR6kJtVl7f7A&s",
         "repositoryUrl": "https://github.com/rhoulou/TotalArab",
-        "fileSize": 17629,
-        "fileHash": "sha256-38c3240e360b780643e4cee576eecc6d14a9e11b0cec845c563c1acfd576e821"
+        "fileSize": 17631,
+        "fileHash": "sha256-95a25254cd3d728f0aa65adfa9858174cc7ffce030650268da44458491825ba4"
     },
     {
         "name": "FASELHD",
         "internalName": "FaselhdProvider",
-        "url": "https://raw.githubusercontent.com/rhoulou/TotalArab/main/FaselhdProvider_11.cs3",
+        "url": "https://raw.githubusercontent.com/rhoulou/TotalArab/main/FaselhdProvider_12.cs3",
         "status": 1,
-        "version": 11,
+        "version": 12,
         "apiVersion": 1,
         "authors": [
             "rhoulou"
@@ -634,14 +634,14 @@
         "iconUrl": null,
         "repositoryUrl": "https://github.com/rhoulou/TotalArab",
         "fileSize": 55267,
-        "fileHash": "sha256-0d00992bbb5072e4d2217672dd9a986354f7ef4ab855c55eb91ddddf9e2a506c"
+        "fileHash": "sha256-1e1ff25554e644ea3449d24a6775b5ee45a212208f256cacc6e2eafe167bed27"
     },
     {
         "name": "CimaWbas",
         "internalName": "CimawbasProvider",
-        "url": "https://raw.githubusercontent.com/rhoulou/TotalArab/main/CimawbasProvider_11.cs3",
+        "url": "https://raw.githubusercontent.com/rhoulou/TotalArab/main/CimawbasProvider_12.cs3",
         "status": 1,
-        "version": 11,
+        "version": 12,
         "apiVersion": 1,
         "authors": [
             "rhoulou"
@@ -657,14 +657,14 @@
         "iconUrl": null,
         "repositoryUrl": "https://github.com/rhoulou/TotalArab",
         "fileSize": 13512,
-        "fileHash": "sha256-af1a27005548ab4993a6295f4aca1c96a40f76753c29482a38e9aa293e180b5e"
+        "fileHash": "sha256-abbbd17aa4686443ecaf1719d7db8948668c9a59b9f1208f8d991da66ede22dc"
     },
     {
         "name": "Arabseed",
         "internalName": "ArabseedProvider",
-        "url": "https://raw.githubusercontent.com/rhoulou/TotalArab/main/ArabseedProvider_11.cs3",
+        "url": "https://raw.githubusercontent.com/rhoulou/TotalArab/main/ArabseedProvider_12.cs3",
         "status": 1,
-        "version": 11,
+        "version": 12,
         "apiVersion": 1,
         "authors": [
             "rhoulou"
@@ -678,15 +678,15 @@
         ],
         "iconUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRjXYRCgXdHTs-hdcOKs1ooTW5plsBI7CWbsA&s",
         "repositoryUrl": "https://github.com/rhoulou/TotalArab",
-        "fileSize": 44042,
-        "fileHash": "sha256-ca5d70fb7439ce7c11553868aec8809265463c895f724aad44c82be99f760762"
+        "fileSize": 44045,
+        "fileHash": "sha256-989b25a1d7eb82eed47a9b4041bc76d430071817313359b8055a227d599800b2"
     },
     {
         "name": "Shabakaty Cinemana",
         "internalName": "CinemanaProvider",
-        "url": "https://raw.githubusercontent.com/rhoulou/TotalArab/main/CinemanaProvider_11.cs3",
+        "url": "https://raw.githubusercontent.com/rhoulou/TotalArab/main/CinemanaProvider_12.cs3",
         "status": 1,
-        "version": 11,
+        "version": 12,
         "apiVersion": 1,
         "authors": [
             "rhoulou"
@@ -699,15 +699,15 @@
         ],
         "iconUrl": null,
         "repositoryUrl": "https://github.com/rhoulou/TotalArab",
-        "fileSize": 47793,
-        "fileHash": "sha256-6ceedc015996c0102de494146d81ffe85f73c1f1468fee07dba8c96e00c598fa"
+        "fileSize": 47794,
+        "fileHash": "sha256-75f6ae4f1723c46cae6a5a5423b0e7e822d0fe822475b2be748ef493d49d0664"
     },
     {
         "name": "MarocLive",
         "internalName": "MarocLiveProvider",
-        "url": "https://raw.githubusercontent.com/rhoulou/TotalArab/main/MarocLiveProvider_2.cs3",
+        "url": "https://raw.githubusercontent.com/rhoulou/TotalArab/main/MarocLiveProvider_3.cs3",
         "status": 1,
-        "version": 2,
+        "version": 3,
         "apiVersion": 1,
         "authors": [
             "rhoulou"
@@ -719,7 +719,7 @@
         ],
         "iconUrl": "https://flagcdn.com/w320/ma.png",
         "repositoryUrl": "https://github.com/rhoulou/TotalArab",
-        "fileSize": 13613,
-        "fileHash": "sha256-f12f1862c16681c2d93188b1837c20ef636e444852ef1588c25d53a76f682a74"
+        "fileSize": 43096,
+        "fileHash": "sha256-6626c7e267e9ae9937ea5c44ae3419a763d52307889d910a3bb1acf71081ec17"
     }
 ]
