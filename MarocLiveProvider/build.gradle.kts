@@ -1,5 +1,5 @@
 // Use an integer for version numbers - bump it to trigger updates in CS3.
-version = 1
+version = 2
 
 cloudstream {
     language = "ar"
@@ -16,4 +16,5 @@ cloudstream {
     status = 1
     tvTypes = listOf("Live")
 
+    iconUrl = "https://flagcdn.com/w320/ma.png"
 }

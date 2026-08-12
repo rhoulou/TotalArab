@@ -1,5 +1,6 @@
 package com.maroclive
 
+import android.util.Log
 import com.lagradost.cloudstream3.HomePageList
 import com.lagradost.cloudstream3.HomePageResponse
 import com.lagradost.cloudstream3.LiveSearchResponse
@@ -13,7 +14,10 @@ import com.lagradost.cloudstream3.newHomePageResponse
 import com.lagradost.cloudstream3.newLiveSearchResponse
 import com.lagradost.cloudstream3.newLiveStreamLoadResponse
 import com.lagradost.cloudstream3.utils.ExtractorLink
+import com.lagradost.cloudstream3.utils.ExtractorLinkType
 import com.lagradost.cloudstream3.utils.M3u8Helper
+import com.lagradost.cloudstream3.utils.Qualities
+import com.lagradost.cloudstream3.utils.newExtractorLink
 
 class MarocLiveProvider : MainAPI() {
     override var mainUrl = "https://snrtlive.ma/"
@@ -214,13 +218,39 @@ class MarocLiveProvider : MainAPI() {
         callback: (ExtractorLink) -> Unit
     ): Boolean {
         val channel = channels.firstOrNull { it.url == data } ?: return false
-        val links = M3u8Helper.generateM3u8(
-            channel.name,
-            data,
-            referer = channel.referer ?: "",
-            headers = headersFor(channel)
-        )
-        links.forEach(callback)
-        return links.isNotEmpty()
+        Log.d("MarocLive", "loadLinks: ${channel.name} url=$data referer=${channel.referer ?: "none"} headers=${headersFor(channel)}")
+        val emitRawFallback: suspend () -> Boolean = {
+            Log.w("MarocLive", "loadLinks: ${channel.name} falling back to raw HLS url: $data")
+            callback(
+                newExtractorLink(
+                    source = channel.name,
+                    name = channel.name,
+                    url = data,
+                    type = ExtractorLinkType.M3U8
+                ) {
+                    referer = channel.referer ?: ""
+                    headers = headersFor(channel)
+                    quality = Qualities.Unknown.value
+                }
+            )
+            true
+        }
+        return try {
+            val links = M3u8Helper.generateM3u8(
+                channel.name,
+                data,
+                referer = channel.referer ?: "",
+                headers = headersFor(channel)
+            )
+            Log.d("MarocLive", "loadLinks: ${channel.name} parsed ${links.size} HLS link(s)")
+            links.forEach { link ->
+                Log.d("MarocLive", "loadLinks: ${channel.name} -> ${link.url}")
+                callback(link)
+            }
+            if (links.isNotEmpty()) true else emitRawFallback()
+        } catch (e: Exception) {
+            Log.e("MarocLive", "loadLinks: ${channel.name} failed to parse HLS: $data", e)
+            emitRawFallback()
+        }
     }
 }
