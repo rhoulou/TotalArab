@@ -42,7 +42,8 @@ class MarocLiveProvider : MainAPI() {
 
     private val snrtReferer = "https://snrt.player.easybroadcast.io/"
     private val easybroadcastBase = "https://cdn.live.easybroadcast.io/abr_corp"
-    private val twoMLogo = "https://m.2m.ma/static/images/2m-logo-thumbnail.png"
+    private val thumbs = "https://raw.githubusercontent.com/rhoulou/TotalArab/main/MarocLiveProvider/thumbnails"
+    private val twoMLogo = "$thumbs/2m.png"
 
     private val channels = listOf(
         Channel("2M", "http://185.9.2.18/chid_218/index.m3u8", twoMLogo, "2M"),
@@ -63,116 +64,116 @@ class MarocLiveProvider : MainAPI() {
         Channel(
             "Al Aoula",
             "$easybroadcastBase/73_aloula_w1dqfwm/playlist_dvr.m3u8",
-            "https://www.snrt.ma/sites/default/files/2023-03/alaoula.png",
+            "$thumbs/al-aoula.png",
             "SNRT",
             referer = snrtReferer
         ),
         Channel(
             "Al Aoula Laâyoune",
             "$easybroadcastBase/73_laayoune_pgagr52/playlist_dvr.m3u8",
-            "https://www.snrt.ma/sites/default/files/2023-04/laayoune.png",
+            "$thumbs/laayoune.png",
             "SNRT",
             referer = snrtReferer
         ),
         Channel(
             "Al Maghribia",
             "$easybroadcastBase/73_almaghribia_83tz85q/playlist_dvr.m3u8",
-            "https://www.snrt.ma/sites/default/files/2023-04/almaghribia.png",
+            "$thumbs/almaghribia.png",
             "SNRT",
             referer = snrtReferer
         ),
         Channel(
             "Al Maghribia (alt)",
             "http://185.9.2.18/chid_205/index.m3u8",
-            "https://www.snrt.ma/sites/default/files/2023-04/almaghribia.png",
+            "$thumbs/almaghribia.png",
             "Autres"
         ),
         Channel(
             "Arryadia",
             "$easybroadcastBase/73_arryadia_k2tgcj0/playlist_dvr.m3u8",
-            "https://www.snrt.ma/sites/default/files/2023-04/arriyadia.png",
+            "$thumbs/arryadia.png",
             "SNRT",
             referer = snrtReferer
         ),
         Channel(
             "Assadissa",
             "$easybroadcastBase/73_assadissa_7b7u5n1/playlist_dvr.m3u8",
-            "https://www.snrt.ma/sites/default/files/2023-04/assadissa.png",
+            "$thumbs/assadissa.png",
             "SNRT",
             referer = snrtReferer
         ),
         Channel(
             "Athaqafia",
             "$easybroadcastBase/73_arrabia_hthcj4p/playlist_dvr.m3u8",
-            "https://www.snrt.ma/sites/default/files/2023-04/attakafiya.png",
+            "$thumbs/athaqafia.png",
             "SNRT",
             referer = snrtReferer
         ),
         Channel(
             "Tamazight TV",
             "$easybroadcastBase/73_tamazight_tccybxt/playlist_dvr.m3u8",
-            "https://www.snrt.ma/sites/default/files/2023-04/tamazight.png",
+            "$thumbs/tamazight.png",
             "SNRT",
             referer = snrtReferer
         ),
         Channel(
             "Chada TV",
             "https://edge19.vedge.infomaniak.com/livecast/ik:chadatv/playlist.m3u8",
-            "https://freebox.cdn.scw.iliad.fr/medium_Logo_chada_tv_2ee1412d38.png",
+            "$thumbs/chada.png",
             "Autres"
         ),
         Channel(
             "StoryChannel TV",
             "https://136044159.r.cdnsun.net/storychannel.m3u8",
-            "https://i.imgur.com/ZBV6xph.png",
+            "$thumbs/storychannel.png",
             "Autres"
         ),
         Channel(
             "Medi 1 TV Maghreb",
             "$easybroadcastBase/83_medi1tv-maghreb_jnbspmg/playlist.m3u8",
-            "https://www.medi1tv.com/assets/imgs/medi1_circule_mg.png",
+            "$thumbs/medi1.png",
             "Medi1 TV"
         ),
         Channel(
             "Medi 1 TV Maghreb (DVR 6h)",
             "$easybroadcastBase/83_medi1tv-maghreb_jnbspmg/playlist_dvr.m3u8",
-            "https://www.medi1tv.com/assets/imgs/medi1_circule_mg.png",
+            "$thumbs/medi1.png",
             "Medi1 TV"
         ),
         Channel(
             "Medi 1 TV Afrique",
             "$easybroadcastBase/83_medi1tv-afrique_tm7tu45/playlist.m3u8",
-            "https://www.medi1tv.com/assets/imgs/medi1_circule.png",
+            "$thumbs/medi1.png",
             "Medi1 TV"
         ),
         Channel(
             "Medi 1 TV Afrique (DVR 6h)",
             "$easybroadcastBase/83_medi1tv-afrique_tm7tu45/playlist_dvr.m3u8",
-            "https://www.medi1tv.com/assets/imgs/medi1_circule.png",
+            "$thumbs/medi1.png",
             "Medi1 TV"
         ),
         Channel(
             "Medi 1 TV Arabic",
             "$easybroadcastBase/83_medi1tv-arabic_g90v4ec/playlist.m3u8",
-            "https://www.medi1tv.com/assets/imgs/medi1_circule_ar.png",
+            "$thumbs/medi1.png",
             "Medi1 TV"
         ),
         Channel(
             "Medi 1 TV Arabic (DVR 6h)",
             "$easybroadcastBase/83_medi1tv-arabic_g90v4ec/playlist_dvr.m3u8",
-            "https://www.medi1tv.com/assets/imgs/medi1_circule_ar.png",
+            "$thumbs/medi1.png",
             "Medi1 TV"
         ),
         Channel(
             "Medi 1 Radio Maghreb",
             "https://streaming1.medi1tv.com/radio/radio_mag.stream_aac/playlist.m3u8",
-            "https://www.medi1.com/assets/imgs/medi1_logo_new.png?n",
+            "$thumbs/medi1-radio.png",
             "Medi1 Radio"
         ),
         Channel(
             "Medi 1 Radio Afrique",
             "https://streaming1.medi1tv.com/radio/radio_afr.stream_aac/playlist.m3u8",
-            "https://www.medi1.com/assets/imgs/medi1_logo_new.png?n",
+            "$thumbs/medi1-radio.png",
             "Medi1 Radio"
         )
     )
@@ -196,7 +197,7 @@ class MarocLiveProvider : MainAPI() {
                     "الاختبار (Diagnostics)",
                     listOf(
                         newLiveSearchResponse("Full diagnostics: all channels", DIAG_ALL_URL, TvType.Live) {
-                            posterUrl = ""
+                            posterUrl = "$thumbs/snrt-live.png"
                             lang = "ar"
                         }
                     ),
