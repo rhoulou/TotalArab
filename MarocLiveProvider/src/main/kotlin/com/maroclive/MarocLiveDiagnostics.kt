@@ -97,6 +97,14 @@ object Diag {
         null
     }
 
+    fun withQuery(url: String, query: String): String =
+        if (query.isBlank() || url.contains("?")) url else "$url?$query"
+
+    fun tokenQueryOf(url: String): String {
+        val query = url.substringAfter('?', "")
+        return if (query.contains("token=")) query else ""
+    }
+
     fun classifyNetworkError(t: Throwable): String = when (t) {
         is UnknownHostException -> "DNS FAILURE: ${t.message}"
         is ConnectException -> "CONNECT FAILURE: ${t.message}"
@@ -371,6 +379,7 @@ object Diag {
         var firstSegOk: Boolean? = null
 
         if (classifyUrl(ch.url) == "HLS") {
+            val tokenQuery = tokenQueryOf(ch.url)
             val info = hlsDiagnose(res.bodyText, res.finalUrl)
             hlsParsed = res.bodyText?.contains("#EXTM3U") == true
             kv("M3U8 TEST", if (hlsParsed) "PASS" else "FAIL")
@@ -404,7 +413,7 @@ object Diag {
             var mediaUrl = res.finalUrl
             var mediaText = res.bodyText
             if (info.isMaster && info.selectedVariant != null) {
-                val vres = httpGet(info.selectedVariant.url, headers)
+                val vres = httpGet(withQuery(info.selectedVariant.url, tokenQuery), headers)
                 kv("M3U8 TEST: selected variant playlist", if (vres.status in 200..399) "PASS (status=${vres.status})" else "FAIL (status=${vres.status})")
                 mediaUrl = vres.finalUrl
                 mediaText = vres.bodyText
@@ -412,7 +421,7 @@ object Diag {
             if (mediaText != null) {
                 val mInfo = hlsDiagnose(mediaText, mediaUrl)
                 if (mInfo.firstSegment != null) {
-                    val seg = httpHead(mInfo.firstSegment, headers)
+                    val seg = httpHead(withQuery(mInfo.firstSegment, tokenQuery), headers)
                     firstSegOk = seg.failure == null && seg.status in 200..399
                     kv("FIRST SEGMENT TEST", if (firstSegOk == true) "PASS"
                     else "FAIL (status=${seg.status} ${seg.failure?.message ?: ""})")
@@ -421,7 +430,7 @@ object Diag {
                 }
             }
             keyUris(info.keys, mediaUrl).forEach { uri ->
-                val kres = httpHead(uri, headers)
+                val kres = httpHead(withQuery(uri, tokenQuery), headers)
                 kv("KEY TEST", "uri=$uri -> ${if (kres.failure == null && kres.status in 200..399) "PASS" else "FAIL (status=${kres.status} ${kres.failure?.message ?: ""})"}")
             }
         } else {

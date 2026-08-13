@@ -93,10 +93,15 @@ class MarocLiveProvider : MainAPI() {
     private suspend fun signedVariantUrl(channel: Channel, signedMaster: String): String? {
         val fetchHeaders = headersFor(channel).toMutableMap()
         if (channel.referer != null) fetchHeaders["Referer"] = channel.referer
-        val res = Diag.httpGet(signedMaster, fetchHeaders)
+        var res = Diag.httpGet(signedMaster, fetchHeaders)
         if (res.failure != null || res.status !in 200..399 || res.bodyText == null) {
-            Diag.w("signedVariantUrl: master fetch failed for ${channel.name} (status=${res.status})")
-            return null
+            Diag.w("signedVariantUrl: master fetch failed for ${channel.name} (status=${res.status}), retrying once")
+            val retry = Diag.httpGet(signedMaster, fetchHeaders)
+            if (retry.failure != null || retry.status !in 200..399 || retry.bodyText == null) {
+                Diag.w("signedVariantUrl: master fetch failed again for ${channel.name} (status=${retry.status})")
+                return null
+            }
+            res = retry
         }
         val info = Diag.hlsDiagnose(res.bodyText, res.finalUrl)
         if (!info.isMaster) return signedMaster
