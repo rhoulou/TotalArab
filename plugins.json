@@ -705,9 +705,9 @@
     {
         "name": "MarocLive",
         "internalName": "MarocLiveProvider",
-        "url": "https://raw.githubusercontent.com/rhoulou/TotalArab/main/MarocLiveProvider_8.cs3",
+        "url": "https://raw.githubusercontent.com/rhoulou/TotalArab/main/MarocLiveProvider_9.cs3",
         "status": 1,
-        "version": 8,
+        "version": 9,
         "apiVersion": 1,
         "authors": [
             "rhoulou"
@@ -719,7 +719,7 @@
         ],
         "iconUrl": "https://flagcdn.com/w320/ma.png",
         "repositoryUrl": "https://github.com/rhoulou/TotalArab",
-        "fileSize": 49051,
-        "fileHash": "sha256-9200370a54dd06f99aa3c7b0c22d943436d05a1952c2757babbea531726b7921"
+        "fileSize": 49898,
+        "fileHash": "sha256-52fd22bd0bbcc19db0d11d573b888743b434c01b14d623418dce001eed631c96"
     }
 ]
