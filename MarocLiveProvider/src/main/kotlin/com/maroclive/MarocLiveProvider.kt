@@ -74,7 +74,7 @@ class MarocLiveProvider : MainAPI() {
                 val expires = params["expires"]?.toLongOrNull()
                 val tokenPath = params["token_path"]
                 if (token != null && expires != null && tokenPath != null) {
-                    val query = "token=$token&expires=$expires&token_path=${URLEncoder.encode(tokenPath, "UTF-8")}"
+                    val query = "token=$token&expires=$expires&token_path=$tokenPath"
                     val signed = "$base?$query"
                     cachedSignedBase = base
                     cachedSignedUrl = signed
@@ -108,9 +108,8 @@ class MarocLiveProvider : MainAPI() {
     }
 
     private val channels = listOf(
-        Channel("2m.ma", "http://185.9.2.18/chid_218/index.m3u8", twoMLogo, "2m.ma"),
         Channel(
-            "2M Monde",
+            "2m.ma",
             "https://cdn-globecast.akamaized.net/live/eds/2m_monde/hls_video_ts_tuhawxpiemz257adfc/2m_monde.m3u8",
             twoMLogo,
             "2m.ma",
@@ -251,33 +250,43 @@ class MarocLiveProvider : MainAPI() {
         ),
         Channel(
             "Alidaa Alwatania",
-            "https://cdnamd-hls-globecast.akamaized.net/live/ramdisk/radio_idaa_watanya/hls_snrt_radio/index.m3u8",
+            "https://cdn.live.easybroadcast.io/live/radio_nationale/playlist.m3u8",
             "$thumbs/radio-watania.png",
-            "snrtlive.ma"
+            "snrtlive.ma",
+            referer = snrtReferer,
+            requiresToken = true
         ),
         Channel(
             "Chaine Inter",
-            "https://cdnamd-hls-globecast.akamaized.net/live/ramdisk/radio_chaine_inter/hls_snrt_radio/index.m3u8",
+            "https://cdn.live.easybroadcast.io/live/radio_inter/playlist.m3u8",
             "$thumbs/radio-inter.png",
-            "snrtlive.ma"
+            "snrtlive.ma",
+            referer = snrtReferer,
+            requiresToken = true
         ),
         Channel(
             "Idaât Mohammed Assadiss",
-            "https://cdnamd-hls-globecast.akamaized.net/live/ramdisk/radio_mohammed_6/hls_snrt_radio/index.m3u8",
+            "https://cdn.live.easybroadcast.io/live/radio_med_VI/playlist.m3u8",
             "$thumbs/radio-assadiss.png",
-            "snrtlive.ma"
+            "snrtlive.ma",
+            referer = snrtReferer,
+            requiresToken = true
         ),
         Channel(
             "Alidaâ Alamazighia",
-            "https://cdnamd-hls-globecast.akamaized.net/live/ramdisk/radio_amazigh/hls_snrt_radio/index.m3u8",
+            "https://cdn.live.easybroadcast.io/live/radio_amazigh/playlist.m3u8",
             "$thumbs/radio-amazigh.png",
-            "snrtlive.ma"
+            "snrtlive.ma",
+            referer = snrtReferer,
+            requiresToken = true
         ),
         Channel(
             "Radio 2M",
-            "https://cdnamd-hls-globecast.akamaized.net/live/ramdisk/radio_2m/radio_hls_ts_hy217612tge1f21j83/radio_2m-mp4a_130400_qad=1.m3u8",
+            "https://cdn-globecast.akamaized.net/live/eds/radio_2m/radio_hls_ts_hy217612tge1f21j83/radio_2m.m3u8",
             twoMLogo,
-            "2m.ma"
+            "2m.ma",
+            referer = "https://2m.ma",
+            userAgent = browserUserAgent
         )
     )
 
